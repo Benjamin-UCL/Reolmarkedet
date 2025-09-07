@@ -1,0 +1,8 @@
+﻿DROP TABLE TESTTABLE;
+
+CREATE TABLE TESTTABLE(
+	PKey int IDENTITY (1,1) PRIMARY KEY,
+	Id int NOT NULL,
+	NameOne NVarChar(50) NOT NULL,
+	Whatever int
+);
