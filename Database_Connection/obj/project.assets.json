@@ -2052,23 +2052,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\benja\\.nuget\\packages\\": {},
+    "C:\\Users\\conta\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\benja\\source\\repos\\Reolmarkedet\\Database_Connection\\Database_Connection.csproj",
+      "projectUniqueName": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Database_Connection\\Database_Connection.csproj",
       "projectName": "Database_Connection",
-      "projectPath": "C:\\Users\\benja\\source\\repos\\Reolmarkedet\\Database_Connection\\Database_Connection.csproj",
-      "packagesPath": "C:\\Users\\benja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\benja\\source\\repos\\Reolmarkedet\\Database_Connection\\obj\\",
+      "projectPath": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Database_Connection\\Database_Connection.csproj",
+      "packagesPath": "C:\\Users\\conta\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Database_Connection\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\benja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\conta\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2083,8 +2083,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\benja\\source\\repos\\Reolmarkedet\\Model\\Model.csproj": {
-              "projectPath": "C:\\Users\\benja\\source\\repos\\Reolmarkedet\\Model\\Model.csproj"
+            "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Model\\Model.csproj": {
+              "projectPath": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Model\\Model.csproj"
             }
           }
         }

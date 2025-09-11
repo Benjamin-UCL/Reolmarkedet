@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\benja\\source\\repos\\Reolmarkedet\\Model\\Model.csproj": {}
+    "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Model\\Model.csproj": {}
   },
   "projects": {
-    "C:\\Users\\benja\\source\\repos\\Reolmarkedet\\Model\\Model.csproj": {
+    "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\benja\\source\\repos\\Reolmarkedet\\Model\\Model.csproj",
+        "projectUniqueName": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "C:\\Users\\benja\\source\\repos\\Reolmarkedet\\Model\\Model.csproj",
-        "packagesPath": "C:\\Users\\benja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\benja\\source\\repos\\Reolmarkedet\\Model\\obj\\",
+        "projectPath": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Model\\Model.csproj",
+        "packagesPath": "C:\\Users\\conta\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\benja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\conta\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
