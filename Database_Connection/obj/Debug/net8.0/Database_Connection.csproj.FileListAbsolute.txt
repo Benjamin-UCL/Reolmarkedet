@@ -14,3 +14,4 @@ C:\Users\benja\source\repos\Reolmarkedet\Database_Connection\bin\Debug\net8.0\Mo
 C:\Users\benja\source\repos\Reolmarkedet\Database_Connection\obj\Debug\net8.0\Database_Connection.csproj.AssemblyReference.cache
 C:\Users\benja\source\repos\Reolmarkedet\Database_Connection\obj\Debug\net8.0\Database.2DE2B715.Up2Date
 C:\Users\benja\source\repos\Reolmarkedet\Database_Connection\bin\Debug\net8.0\Schema\Schema.sql
+C:\Users\benja\source\repos\Reolmarkedet\Database_Connection\obj\Debug\net8.0\Database_Connection.sourcelink.json
