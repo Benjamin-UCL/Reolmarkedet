@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Database_Connection\\Database_Connection.csproj": {}
+    "C:\\Users\\Cecil\\source\\repos\\Reolmarkedet\\Database_Connection\\Database_Connection.csproj": {}
   },
   "projects": {
-    "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Database_Connection\\Database_Connection.csproj": {
+    "C:\\Users\\Cecil\\source\\repos\\Reolmarkedet\\Database_Connection\\Database_Connection.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Database_Connection\\Database_Connection.csproj",
+        "projectUniqueName": "C:\\Users\\Cecil\\source\\repos\\Reolmarkedet\\Database_Connection\\Database_Connection.csproj",
         "projectName": "Database_Connection",
-        "projectPath": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Database_Connection\\Database_Connection.csproj",
-        "packagesPath": "C:\\Users\\conta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Database_Connection\\obj\\",
+        "projectPath": "C:\\Users\\Cecil\\source\\repos\\Reolmarkedet\\Database_Connection\\Database_Connection.csproj",
+        "packagesPath": "C:\\Users\\Cecil\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Cecil\\source\\repos\\Reolmarkedet\\Database_Connection\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\conta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Cecil\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Model\\Model.csproj": {
-                "projectPath": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Model\\Model.csproj"
+              "C:\\Users\\Cecil\\source\\repos\\Reolmarkedet\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\Cecil\\source\\repos\\Reolmarkedet\\Model\\Model.csproj"
               }
             }
           }
@@ -48,7 +49,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -79,24 +80,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Model\\Model.csproj": {
+    "C:\\Users\\Cecil\\source\\repos\\Reolmarkedet\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Model\\Model.csproj",
+        "projectUniqueName": "C:\\Users\\Cecil\\source\\repos\\Reolmarkedet\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Model\\Model.csproj",
-        "packagesPath": "C:\\Users\\conta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\conta\\OneDrive\\Bureaublad\\DMOoF25\\2 sem\\Reolmarkedet\\Model\\obj\\",
+        "projectPath": "C:\\Users\\Cecil\\source\\repos\\Reolmarkedet\\Model\\Model.csproj",
+        "packagesPath": "C:\\Users\\Cecil\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Cecil\\source\\repos\\Reolmarkedet\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\conta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Cecil\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -105,6 +106,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -123,7 +125,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -144,7 +146,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
