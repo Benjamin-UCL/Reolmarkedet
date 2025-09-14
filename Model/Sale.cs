@@ -8,6 +8,9 @@ namespace Model;
 
 public class Sale
 {
+
+    private Item _item;
+
     private double _price;
     public double Price 
     { 
@@ -25,9 +28,18 @@ public class Sale
     }
     
 
-    public Sale() 
+    public Sale(Item item, double adjustedPrice = null) 
     { 
-        
+        this._item = item;
+        if (adjustedPrice != null)
+        {
+            this._price = adjustedPrice;
+        }
+        else
+        {
+            this._price = item.Price;
+        }
+
     }
 
 
