@@ -32,6 +32,8 @@ public class Sale
     { 
         this._item = item;
         this._price = (adjustedPrice != null) ? adjustedPrice : item.Price;
+        this._salesDate = DateTime.Now;
+        this._isSetteled = false;
 
     }
 
