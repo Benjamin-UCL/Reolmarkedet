@@ -31,14 +31,7 @@ public class Sale
     public Sale(Item item, double adjustedPrice = null) 
     { 
         this._item = item;
-        if (adjustedPrice != null)
-        {
-            this._price = adjustedPrice;
-        }
-        else
-        {
-            this._price = item.Price;
-        }
+        this._price = (adjustedPrice != null) ? adjustedPrice : item.Price;
 
     }
 
