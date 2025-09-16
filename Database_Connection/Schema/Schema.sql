@@ -26,3 +26,12 @@ CREATE TABLE TENANT(
 	AccountNo int NOT NULL,
 	AccountBalance float NOT NULL DEFAULT 0
 );
+
+CREATE TABLE ITEM (
+	ItemId        int IDENTITY (1,1) PRIMARY KEY,
+    Name          nvarchar(100) NOT NULL,
+    Price         decimal(10,2) NOT NULL, 
+    BarcodeNo     nvarchar(64) NOT NULL UNIQUE, 
+    IsSold        bit NOT NULL DEFAULT 0,
+    ShelfUnitId   int NOT NULL
+);
