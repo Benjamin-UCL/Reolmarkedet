@@ -35,3 +35,8 @@ CREATE TABLE ITEM (
     IsSold        bit NOT NULL DEFAULT 0,
     ShelfUnitId   int NOT NULL
 );
+
+CREATE TABLE RENTAL(
+	RentalId	  int IDENTITY (1,1) PRIMARY KEY,
+
+);
