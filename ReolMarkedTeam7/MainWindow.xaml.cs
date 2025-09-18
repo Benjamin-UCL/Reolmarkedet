@@ -39,13 +39,13 @@ public partial class MainWindow : Window
 
     // Eksemple / test - kan bruges i andre filer, når connection string er lavet og rette using statments er defineret.
         // init repo
-        IRepository<TestModel> TestRepo = new TestRepository(ConnectionString);
+        //IRepository<TestModel> TestRepo = new TestRepository(ConnectionString);
         // run schema
 
         // add test objects
-        TestRepo.Add(new TestModel("Hello"));
-        TestRepo.Add(new TestModel("World!"));
-        TestRepo.Add(new TestModel("2"));
+        //TestRepo.Add(new TestModel("Hello"));
+        //TestRepo.Add(new TestModel("World!"));
+        //TestRepo.Add(new TestModel("2"));
         // End
 
     }
