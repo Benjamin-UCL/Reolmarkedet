@@ -35,8 +35,15 @@ CREATE TABLE SALE(
 );
 
 CREATE TABLE RENTAL(
-	RentalId	  int IDENTITY (1,1) PRIMARY KEY,
-
+	RentalId int IDENTITY (1,1) PRIMARY KEY,
+	StartDate datetime2 NOT NULL,
+	EndDate datetime2 NOT NULL,
+	IsSettled bit NOT NULL, DEFAULT 0,
+	SettledDate datetime2 NULL,
+	RentalConfig bit NOT NULL, DEFAULT 0,
+	PriceAgreement decimal (10,2) NULL,
+	TenantId int,
+	ShelfUnitId int
 );
 
 
