@@ -23,7 +23,7 @@ CREATE TABLE ITEM (
     Price         decimal(10,2) NOT NULL, 
     BarcodeNo     nvarchar(64) NOT NULL UNIQUE, 
     IsSold        bit NOT NULL DEFAULT 0,
-    ShelfUnitId   int NOT NULL
+    ShelfUnitId   int NOT NULL FOREIGN KEY REFERENCES SHELF_UNIT(ShelfUnitId)
 );
 
 CREATE TABLE SALE(
@@ -42,8 +42,8 @@ CREATE TABLE RENTAL(
 	SettledDate datetime2 NULL,
 	RentalConfig bit NOT NULL, DEFAULT 0,
 	PriceAgreement decimal (10,2) NULL,
-	TenantId int,
-	ShelfUnitId int
+	TenantId int FOREIGN KEY REFERENCES TENANT(TenantId),
+	ShelfUnitId int FOREIGN KEY REFERENCES SHELF_UNIT(ShelfUnitId)
 );
 
 
