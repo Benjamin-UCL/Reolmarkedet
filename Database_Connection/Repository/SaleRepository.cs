@@ -30,7 +30,6 @@ public class SaleRepository : IRepository<Model.Sale>
             connection.Open();
             command.ExecuteNonQuery();
         }
-
     }
 
     public void Delete(int id)
