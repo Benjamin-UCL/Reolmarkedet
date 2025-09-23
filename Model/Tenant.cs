@@ -14,8 +14,8 @@ namespace Model
             get { return _name; }
         }
 
-        private int _phoneNo;
-        public int PhoneNo 
+        private string _phoneNo;
+        public string PhoneNo 
         { 
             get { return _phoneNo; }
         }
@@ -32,8 +32,8 @@ namespace Model
             get { return _accountNo; }
         }
 
-        private double _accountBalance;
-        public double AccountBalance 
+        private decimal _accountBalance;
+        public decimal AccountBalance 
         { 
             get { return _accountBalance; }
         }
