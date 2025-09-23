@@ -30,7 +30,7 @@ public class SaleRepository : IRepository<Model.Sale>
             connection.Open();
             //command.ExecuteNonQuery();
             int newId = (int)command.ExecuteScalar();
-            return newId;
+            return newId;   
 
         }
     }
@@ -39,8 +39,11 @@ public class SaleRepository : IRepository<Model.Sale>
     {
         throw new NotImplementedException();
         //string query = "DELETE FROM SALE WHERE Id = @Id";
+        //command.Parameters.AddWithValue("@Id", id);
+        //connection.Open();
+        //command.ExecuteNonQuery();
     }
-
+        
     public IEnumerable<Sale> GetAll()
     {
         throw new NotImplementedException();
