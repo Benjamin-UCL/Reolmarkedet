@@ -11,7 +11,7 @@ namespace Database_Connection.Repository
     {
         //Opretter en ny Item i databasen.
         //Senere: kør en INSERT INTO Items(...) VALUES(...) og sæt ItemId fra DB.
-        public void Add(Item entity)
+        public int Add(Item entity)
         {
             throw new NotImplementedException();
         }

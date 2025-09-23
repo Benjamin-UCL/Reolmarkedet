@@ -9,7 +9,7 @@ namespace Database_Connection.Repository
 {
     public class ShelvingUnitRepository : IRepository<Model.ShelvingUnit>
     {
-        public void Add(ShelvingUnit entity)
+        public int Add(ShelvingUnit entity)
         {
             throw new NotImplementedException();
         }

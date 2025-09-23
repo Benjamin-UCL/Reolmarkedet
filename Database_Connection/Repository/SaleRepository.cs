@@ -17,7 +17,7 @@ public class SaleRepository : IRepository<Model.Sale>
         _connectionString = connectionString;
     }
 
-    public void Add(Sale entity)
+    public int Add(Sale entity)
     {
         string query = "INSERT INTO SALE (SalesDate, Price, ItemId) VALUES (@Date, @Price, @ItemId)";
 

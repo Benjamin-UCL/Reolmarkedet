@@ -9,7 +9,7 @@ namespace Database_Connection.Repository
 {
     public class TenantRepository : IRepository<Model.Tenant>
     {
-        public void Add(Tenant entity)
+        public int Add(Tenant entity)
         {
             throw new NotImplementedException();
         }
