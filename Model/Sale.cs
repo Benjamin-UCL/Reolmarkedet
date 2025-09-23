@@ -25,7 +25,10 @@ public class Sale
     { 
         get { return _isSetteled; }
     }
-
+    public int ItemId 
+    { 
+        get { return _item.ItemId; }
+    }
 
     //public Sale(Item item, double adjustedPrice = null) 
     //{ 

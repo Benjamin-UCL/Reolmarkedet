@@ -39,7 +39,7 @@ CREATE TABLE ITEM (
 
 CREATE TABLE SALE(
 	SaleId int IDENTITY (1,1) PRIMARY KEY,
-	Date date NOT NULL,
+	SalesDate date NOT NULL,
 	Price decimal(10,2) NOT NULL,
 	IsSetteled bit NOT NULL DEFAULT 0,
 	ItemId int FOREIGN KEY REFERENCES ITEM(ItemId)
