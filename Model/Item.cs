@@ -17,7 +17,7 @@ public class Item
 
     public Item() { }
 
-    public Item(string name, double price, string barcodeNo, int shelvingUnitId)
+    public Item(string name, decimal price, string barcodeNo, int shelvingUnitId)
     {
         Name = name;
         Price = price;
