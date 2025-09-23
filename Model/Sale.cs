@@ -25,15 +25,23 @@ public class Sale
     { 
         get { return _isSetteled; }
     }
-    
 
-    public Sale(Item item, double adjustedPrice = null) 
+
+    //public Sale(Item item, double adjustedPrice = null) 
+    //{ 
+    //this._item = item;
+    //this._price = (adjustedPrice != null) ? adjustedPrice : item.Price;
+    //this._salesDate = DateTime.Now;
+    //this._isSetteled = false;
+
+    //}
+
+    public Sale(Item item) 
     { 
         this._item = item;
-        this._price = (adjustedPrice != null) ? adjustedPrice : item.Price;
+        this._price = item.Price;
         this._salesDate = DateTime.Now;
         this._isSetteled = false;
-
     }
 
 
