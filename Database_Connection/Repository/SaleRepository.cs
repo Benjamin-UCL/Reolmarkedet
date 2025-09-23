@@ -19,7 +19,7 @@ public class SaleRepository : IRepository<Model.Sale>
 
     public int Add(Sale entity)
     {
-        string query = "INSERT INTO SALE (SalesDate, Price, ItemId) VALUES (@Date, @Price, @ItemId)";
+        string query = "INSERT INTO SALE (SalesDate, Price, ItemId) OUTPUT INSERTED.SaleId VALUES (@Date, @Price, @ItemId)";
 
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
@@ -28,7 +28,10 @@ public class SaleRepository : IRepository<Model.Sale>
             command.Parameters.AddWithValue("@Price", entity.Price);
             command.Parameters.AddWithValue("@ItemId", entity.ItemId);
             connection.Open();
-            command.ExecuteNonQuery();
+            //command.ExecuteNonQuery();
+            int newId = (int)command.ExecuteScalar();
+            return newId;
+
         }
     }
 
@@ -36,6 +39,9 @@ public class SaleRepository : IRepository<Model.Sale>
     {
         throw new NotImplementedException();
         //string query = "DELETE FROM SALE WHERE Id = @Id";
+        //command.Parameters.AddWithValue("@Id", id);
+        //connection.Open();
+        //command.ExecuteNonQuery();
     }
 
     public IEnumerable<Sale> GetAll()

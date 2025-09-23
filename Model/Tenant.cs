@@ -8,6 +8,11 @@ namespace Model;
 
 public class Tenant
 {
+    /*private int _tenantId;
+    public int TenantId 
+    { 
+        get { return _tenantId; }
+    }*/
     private string _name;
     public string Name 
     { 
@@ -36,6 +41,16 @@ public class Tenant
     public decimal AccountBalance 
     { 
         get { return _accountBalance; }
+    }
+
+    public Tenant(/*int tenantId,*/ string name, string phoneNo, string email, int accountNumber)
+    {
+        //this._tenantId = tenantId;
+        this._name = name;
+        this._phoneNo = phoneNo;
+        this._email = email;
+        this._accountNo = accountNumber;
+        this._accountBalance = 0.0M;
     }
 
     public void Anonymize()
