@@ -1,8 +1,8 @@
 ﻿DROP TABLE SALE;	
-DROP TABLE TENANT;
-DROP TABLE SHELVING_UNIT;
 DROP TABLE ITEM;
 DROP TABLE RENTAL;
+DROP TABLE TENANT;
+DROP TABLE SHELVING_UNIT;
 
 CREATE TABLE SHELF_UNIT(
 	ShelfUnitId int IDENTITY (1,1) PRIMARY KEY
@@ -14,7 +14,7 @@ CREATE TABLE TENANT(
 	PhoneNo nvarchar(15) NOT NULL,
 	Email nvarchar(100) NOT NULL,
 	AccountNo int NOT NULL,
-	AccountBalance DECIMAL(18, 2) NOT NULL DEFAULT 0
+	AccountBalance DECIMAL(10, 2) NOT NULL DEFAULT 0
 );
 
 CREATE TABLE ITEM (
@@ -40,8 +40,8 @@ CREATE TABLE RENTAL(
 	EndDate datetime2 NOT NULL,
 	IsSettled bit NOT NULL, DEFAULT 0,
 	SettledDate datetime2 NULL,
-	RentalConfig bit NOT NULL, DEFAULT 0,
-	PriceAgreement decimal (10,2) NULL,
+	RentalConfig int NOT NULL, DEFAULT 0,
+	PriceAgreement decimal (10,2) NOT NULL,
 	TenantId int FOREIGN KEY REFERENCES TENANT(TenantId),
 	ShelfUnitId int FOREIGN KEY REFERENCES SHELF_UNIT(ShelfUnitId)
 );
