@@ -19,7 +19,21 @@ namespace Database_Connection.Repository
         }
         public int Add(Tenant entity)
         {
-            throw new NotImplementedException();
+            string query = "INSERT INTO TENANT (Name, PhoneNo, Email, AccountNumber) OUTPUT INSERTED.TenantId VALUES (@Name, @PhoneNo, @Email, @AccountNumber)";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Name", entity.Name);
+                command.Parameters.AddWithValue("@PhoneNo", entity.PhoneNo);
+                command.Parameters.AddWithValue("@Email", entity.Email);
+                command.Parameters.AddWithValue("@AccountNumber", entity.AccountNo);
+                connection.Open();
+                //command.ExecuteNonQuery();
+                int newId = (int)command.ExecuteScalar();
+                return newId;
+
+            }
         }
 
         public void Delete(int id)
