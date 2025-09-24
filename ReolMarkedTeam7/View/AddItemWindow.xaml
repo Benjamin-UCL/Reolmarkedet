@@ -1,0 +1,66 @@
+﻿<Window x:Class="ReolMarkedTeam7.View.AddItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Opret ny vare manuelt"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight"
+        Background="White"
+        MinWidth="360" MinHeight="420">
+
+    <Border Margin="12" Padding="12" BorderBrush="White" BorderThickness="1" CornerRadius="6">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"   />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Titel -->
+            <TextBlock Text="Opret ny vare manuelt" FontSize="18" FontWeight="Bold" Margin="0,0,0,12"/>
+
+            <!-- Titel felt -->
+            <Grid Grid.Row="1" Margin="0,0,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Titel" VerticalAlignment="Center"/>
+                <TextBox x:Name="TitleBox" Grid.Column="1" Height="28"/>
+            </Grid>
+
+            <!-- Pris -->
+            <Grid Grid.Row="2" Margin="0,0,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Pris" VerticalAlignment="Center"/>
+                <TextBox x:Name="PriceBox" Grid.Column="1" Height="28"
+                         PreviewTextInput="PriceBox_PreviewTextInput"/>
+            </Grid>
+
+            <!-- Reol -->
+            <Grid Grid.Row="3" Margin="0,0,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Reol" VerticalAlignment="Top" Margin="0,16,0,0"/>
+                <ComboBox x:Name="ShelfCombo" Grid.Column="1" Height="28"
+                          IsEditable="False" Margin="0,10,0,160" />
+            </Grid>
+
+            <!-- Knapper -->
+            <DockPanel Grid.Row="4" LastChildFill="False" Margin="0,8,0,0">
+                <Button Content="Gem" Width="90" Height="32" Margin="0,0,8,0"
+                        Click="SaveItem_Click"/>
+                <Button Content="Importér CSV" Width="120" Height="32"
+                        Click="ImportCsv_Click" />
+            </DockPanel>
+        </Grid>
+    </Border>
+</Window>
+
