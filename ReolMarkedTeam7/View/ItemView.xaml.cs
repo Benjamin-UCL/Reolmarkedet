@@ -17,5 +17,28 @@ namespace ReolMarkedTeam7.View
     public partial class ItemView : UserControl
     {
         public ItemView() => InitializeComponent();
+
+        // --- Tomme handlers så UI kan køre uden logik endnu ---
+
+        private void AddItem_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Ryd formularen / åbn dialog / skift til “ny vare”-tilstand
+        }
+
+        private void SaveItem_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Valider felter og gem via ViewModel/Repository
+            // TitleBox.Text, PriceBox.Text, ShelfCombo.SelectedItem ...
+        }
+
+        private void DeleteItem_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Slet valgt vare (ItemsGrid.SelectedItem)
+        }
+
+        private void ItemsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // TODO: Bind valgte række over i formularen
+        }
     }
 }
