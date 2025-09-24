@@ -53,6 +53,7 @@
             </DataGrid>
 
             <Button Grid.Row="2" Content="Tilføj lejer" Width="100" Height="32"
+                    
                     HorizontalAlignment="Left" Click="AddTenant_Click" Margin="10,567,0,10" Grid.RowSpan="2"/>
         </Grid>
 

@@ -15,38 +15,33 @@ using System.Windows.Shapes;
 
 namespace ReolMarkedTeam7.View
 {
-    public partial class TenantView : UserControl
+    public partial class TenantView
     {
         public TenantView() => InitializeComponent();
 
-        private void AddTenant_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: Åbn tom formular / kald VM-kommando
-        }
-
-        private void SaveTenant_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: Gem via VM (NameBox.Text, PhoneBox.Text, ...)
-        }
-
-        private void DeleteTenant_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: Slet valgt lejer i TenantsGrid
-        }
-
         private void AddShelf_Click(object sender, RoutedEventArgs e)
         {
-            var dlg = new AddShelfWindow
+            var allUnits = new[] { "R26", "R27", "R28", "R31" }; // TODO: hent fra DB/VM
+            var dlg = new AddShelvingUnitWindow(allUnits)
             {
-                Owner = Window.GetWindow(this)  // sæt MainWindow som owner
+                Owner = Window.GetWindow(this)
             };
 
             if (dlg.ShowDialog() == true)
             {
-                // Eksempel på at vise resultatet midlertidigt i listen
-                ShelvesList.Items.Add($"{dlg.SelectedShelfNumber}  ({dlg.StartDate:dd-MM-yyyy})");
+                // Midlertidigt: vis resultatet i listen
+                ShelvesList.Items.Add($"{dlg.SelectedUnitNumber}  (fra {dlg.StartDate:d})");
+
+                // TODO: Kald din ViewModel for at tilføje reolen til den valgte lejer.
             }
         }
+
+        // (valgfrit) stubs til de andre knapper:
+        private void AddTenant_Click(object s, RoutedEventArgs e) { /* TODO */ }
+        private void SaveTenant_Click(object s, RoutedEventArgs e) { /* TODO */ }
+        private void DeleteTenant_Click(object s, RoutedEventArgs e) { /* TODO */ }
+        private void TenantsGrid_SelectionChanged(object s, System.Windows.Controls.SelectionChangedEventArgs e) { /* TODO */ }
     }
 }
+
 
