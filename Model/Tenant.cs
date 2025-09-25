@@ -8,11 +8,12 @@ namespace Model;
 
 public class Tenant
 {
-    /*private int _tenantId;
+    private int _tenantId;
     public int TenantId 
     { 
         get { return _tenantId; }
-    }*/
+    }
+
     private string _name;
     public string Name 
     { 

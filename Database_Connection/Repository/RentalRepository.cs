@@ -28,12 +28,11 @@ public class RentalRepository : IRepository<Model.Rental>
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@StartDate", entity.StartDate);
             command.Parameters.AddWithValue("@EndDate", entity.EndDate);
-            command.Parameters.AddWithValue("@SettledDate",
-                entity.SettledDate.HasValue ? entity.SettledDate.Value : (object)DBNull.Value); //For at SettledDate kan være tom
+            command.Parameters.AddWithValue("@SettledDate", entity.SettledDate );            
             command.Parameters.AddWithValue("@RentalConfig", entity.RentalConfig);
             command.Parameters.AddWithValue("@PriceAgreement", entity.PriceAgreement);
-            command.Parameters.AddWithValue("@TenantId", entity.TenantId);
-            command.Parameters.AddWithValue("@ShelfUnitId", entity.ShelfUnitId);
+            command.Parameters.AddWithValue("@TenantId", entity.Tenant.TenantId);
+            command.Parameters.AddWithValue("@ShelfUnitId", entity.Unit.ShelvingUnitID);
 
             connection.Open();
             return command.ExecuteNonQuery();
