@@ -41,6 +41,11 @@ namespace ReolMarkedTeam7.View
         private void SaveTenant_Click(object s, RoutedEventArgs e) { /* TODO */ }
         private void DeleteTenant_Click(object s, RoutedEventArgs e) { /* TODO */ }
         private void TenantsGrid_SelectionChanged(object s, System.Windows.Controls.SelectionChangedEventArgs e) { /* TODO */ }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
 
