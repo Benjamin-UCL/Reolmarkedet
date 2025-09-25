@@ -1,30 +1,31 @@
 ﻿using System.Windows;
 
-namespace ReolMarkedTeam7
-{
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-            // Standard-side ved start
-            MainHost.Content = new View.TenantView();
-        }
+namespace ReolMarkedTeam7;
 
-        private void ShowItems(object s, RoutedEventArgs e) => MainHost.Content = new View.ItemView();
-        private void ShowShelves(object s, RoutedEventArgs e) => MainHost.Content = new View.ShelvingUnitView();
-        private void ShowTenants(object s, RoutedEventArgs e) => MainHost.Content = new View.TenantView();
-        private void ShowSales(object s, RoutedEventArgs e)
-        {
-            // Brug kun hvis I har en SaleView
-            // MainHost.Content = new View.SaleView();
-            MessageBox.Show("Salg (kommer senere)");
-        }
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+        // Standard-side ved start
+        MainHost.Content = new View.TenantView();
     }
-<<<<<<< HEAD
-} 
-=======
+
+    private void ShowItems(object s, RoutedEventArgs e) => MainHost.Content = new View.ItemView();
+    private void ShowShelves(object s, RoutedEventArgs e) => MainHost.Content = new View.ShelvingUnitView();
+    private void ShowTenants(object s, RoutedEventArgs e) => MainHost.Content = new View.TenantView();
+    private void ShowSales(object s, RoutedEventArgs e)
+    {
+        // Brug kun hvis I har en SaleView
+        // MainHost.Content = new View.SaleView();
+        MessageBox.Show("Salg (kommer senere)");
+    }
 }
+
+//<<<<<<< HEAD
+
+//=======
+
 
 //using System.Data;
 //using System.Data;
@@ -79,4 +80,4 @@ namespace ReolMarkedTeam7
 //    }
 //}
 
->>>>>>> 3b5391985c733c1b32a607dbdf41029cdb581b24
+//>>>>>>> 3b5391985c733c1b32a607dbdf41029cdb581b24

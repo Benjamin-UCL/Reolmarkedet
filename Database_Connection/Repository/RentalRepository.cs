@@ -116,17 +116,16 @@ public class RentalRepository : IRepository<Model.Rental>
         {
                 if (reader.Read()) // hvis der findes en række
                 {
-                    return new Rental
-                    {
-                        RentalId = reader.GetInt32(0),
-                        StartDate = reader.GetDateTime(1),
-                        EndDate = reader.GetDateTime(2),
-                        SettledDate = reader.IsDBNull(3) ? null : reader.GetDateTime(3),
-                        RentalConfig = reader.GetInt32(4),
-                        PriceAgreement = reader.GetDecimal(5),
-                        TenantId = reader.GetInt32(6),
-                        ShelfUnitId = reader.GetInt32(7)
-                    };
+                    return new Rental(
+                        RentalId: reader.GetInt32(0),
+                        StartDate: reader.GetDateTime(1),
+                        EndDate: reader.GetDateTime(2),             // EndDate
+                        SettledDate: reader.GetDateTime(3), // ? null : reader.GetDateTime(3), // SettledDate kan være null
+                        RentalConfig: reader.GetInt32(1),          // RentalConfig
+                        PriceAgreement: reader.GetDecimal(5),       // PriceAgreement
+                        TenantId: reader.GetInt32(6),               // TenantId
+                        ShelfUnitId: reader.GetInt32(7)             // ShelfUnitId
+                        );
                 }
             }
         }
@@ -154,11 +153,11 @@ public class RentalRepository : IRepository<Model.Rental>
             // Tilføj parametre
             command.Parameters.AddWithValue("@StartDate", entity.StartDate);
             command.Parameters.AddWithValue("@EndDate", entity.EndDate);
-            command.Parameters.AddWithValue("@SettledDate", entity.SettledDate.HasValue ? (object)entity.SettledDate.Value : DBNull.Value);
+            command.Parameters.AddWithValue("@SettledDate", entity.SettledDate);
             command.Parameters.AddWithValue("@RentalConfig", entity.RentalConfig);
             command.Parameters.AddWithValue("@PriceAgreement", entity.PriceAgreement);
-            command.Parameters.AddWithValue("@TenantId", entity.TenantId);
-            command.Parameters.AddWithValue("@ShelfUnitId", entity.ShelfUnitId);
+            command.Parameters.AddWithValue("@TenantId", entity.Tenant.TenantId);
+            command.Parameters.AddWithValue("@ShelfUnitId", entity.Unit.ShelvingUnitID);
             command.Parameters.AddWithValue("@RentalId", entity.RentalId);
 
             connection.Open();
