@@ -14,35 +14,21 @@ public class Tenant
         get { return _tenantId; }
     }*/
     private string _name;
-    public string Name 
-    { 
-        get { return _name; }
-    }
+    public string Name { get; set; }
 
     private string _phoneNo;
-    public string PhoneNo 
-    { 
-        get { return _phoneNo; }
-    }
+    public string PhoneNo { get; set; }
 
     private string _email;
-    public string Email 
-    { 
-        get { return _email; }
-    }
+    public string Email { get; set; }
 
     private int _accountNo;
-    public int AccountNo 
-    { 
-        get { return _accountNo; }
-    }
+    public int AccountNo { get; set; }
 
     private decimal _accountBalance;
-    public decimal AccountBalance 
-    { 
-        get { return _accountBalance; }
-    }
+    public decimal AccountBalance { get; set; }
 
+    public Tenant() { } // Parameterless constructor
     public Tenant(/*int tenantId,*/ string name, string phoneNo, string email, int accountNumber)
     {
         //this._tenantId = tenantId;
