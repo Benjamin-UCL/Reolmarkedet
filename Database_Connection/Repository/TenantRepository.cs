@@ -29,16 +29,23 @@ namespace Database_Connection.Repository
                 command.Parameters.AddWithValue("@Email", entity.Email);
                 command.Parameters.AddWithValue("@AccountNumber", entity.AccountNo);
                 connection.Open();
-                //command.ExecuteNonQuery();
                 int newId = (int)command.ExecuteScalar();
                 return newId;
-
             }
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string query = "DELETE FROM TENANT WHERE TenantId = @TenantId";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@TenantId", id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
 
         public IEnumerable<Tenant> GetAll()
@@ -57,24 +64,12 @@ namespace Database_Connection.Repository
                     while (reader.Read())
                     {
                         tenants.Add(new Tenant
-                        //{
-                        //    tenantid = (int)reader["tenantid"],
-                        //    name = (string)reader["name"],
-                        //    phoneno = (int)reader["phoneno"],
-                        //    email = (string)reader["email"]
-                        //});
                         (
-                            (int)reader["TenantId"],
                             (string)reader["Name"],
-                            (int)reader["PhoneNo"],
+                            (string)reader["PhoneNo"],
                             (string)reader["Email"],
                             (int)reader["AccountNumber"]
                         ));
-                        // TODO: Possibly make a separate table for accounts: <<table>>TenantAccount?
-                        //{
-                        //    _nextAccountNo = (int)reader["AccountNo"],
-                        //    AccountBalance = (double)reader["AccountBalance"]
-                        //});
 
                     }
                 }
@@ -84,12 +79,49 @@ namespace Database_Connection.Repository
 
         public Tenant GetById(int id)
         {
-            throw new NotImplementedException();
+            string query = "SELECT TenantId, Name, PhoneNo, Email, AccountNumber FROM TENANT WHERE TenantId = @TenantId";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@TenantId", id);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Tenant
+                        {
+                            Name = reader["Name"] as string,
+                            PhoneNo = reader["PhoneNo"] as string,
+                            Email = reader["Email"] as string,
+                            AccountNo = (int)reader["AccountNumber"]
+                        };
+                    }
+                }
+            }
+
+            return null;
         }
 
         public void Update(Tenant entity)
         {
-            throw new NotImplementedException();
+            string query = @"UPDATE TENANT 
+                         SET Name = @Name, PhoneNo = @PhoneNo, Email = @Email, AccountNumber = @AccountNumber 
+                         WHERE TenantId = @TenantId";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Name", entity.Name);
+                command.Parameters.AddWithValue("@PhoneNo", entity.PhoneNo);
+                command.Parameters.AddWithValue("@Email", entity.Email);
+                command.Parameters.AddWithValue("@AccountNumber", entity.AccountNo);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
     }
 }
