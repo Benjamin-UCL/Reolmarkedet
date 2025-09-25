@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
@@ -79,23 +80,21 @@ public class RentalRepository : IRepository<Model.Rental>
             {
                 while (reader.Read())
                 {
-                    var rental = new Rental
-                    {
-                        RentalId = reader.GetInt32(0),               // RentalId
-                        StartDate = reader.GetDateTime(1),           // StartDate
-                        EndDate = reader.GetDateTime(2),             // EndDate
-                        SettledDate = reader.IsDBNull(3) ? null : reader.GetDateTime(3), // SettledDate kan være null
-                        RentalConfig = reader.GetString(4),          // RentalConfig
-                        PriceAgreement = reader.GetDecimal(5),       // PriceAgreement
-                        TenantId = reader.GetInt32(6),               // TenantId
-                        ShelfUnitId = reader.GetInt32(7)             // ShelfUnitId
-                    };
+                    var rental = new Rental(
+                        RentalId: reader.GetInt32(0), 
+                        StartDate: reader.GetDateTime(1),
+                        EndDate : reader.GetDateTime(2),             // EndDate
+                        SettledDate : reader.GetDateTime(3), // ? null : reader.GetDateTime(3), // SettledDate kan være null
+                        RentalConfig : reader.GetInt32(1),          // RentalConfig
+                        PriceAgreement : reader.GetDecimal(5),       // PriceAgreement
+                        TenantId : reader.GetInt32(6),               // TenantId
+                        ShelfUnitId : reader.GetInt32(7)             // ShelfUnitId
+                        );
+
                         rentals.Add(rental);
 
                 }
-           
-            }
-       
+            }    
         }
         return rentals;
 
