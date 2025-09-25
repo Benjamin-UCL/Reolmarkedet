@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" Height="507" Width="723">
+             Height="617" Width="1005"
+             Background="White">
 
     <!-- YDERGRID: Header + indhold (venstre liste / højre formular) -->
     <Grid Background="White" Margin="12">
@@ -24,9 +25,9 @@
         </Grid.ColumnDefinitions>
 
         <!-- HEADER -->
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="3"
+        <TextBlock Grid.Row="0"
                    Text="Varer" FontSize="20" FontWeight="Bold"
-                   HorizontalAlignment="Center" Margin="0,6,0,14"/>
+                   HorizontalAlignment="Left" Margin="0,2,0,19"/>
 
         <!-- VENSTRE: Søg + DataGrid + 'Tilføj vare' -->
         <Grid Grid.Row="1" Grid.Column="0">

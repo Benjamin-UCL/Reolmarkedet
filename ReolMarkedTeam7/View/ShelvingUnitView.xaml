@@ -1,0 +1,150 @@
+﻿<UserControl x:Class="ReolMarkedTeam7.View.ShelvingUnitView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="617" Width="1005"
+             Background="White">
+    <!-- Hovedlayout: venstre tabel / højre formular -->
+    <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <!-- venstre -->
+            <ColumnDefinition Width="16" />
+            <!-- gutter -->
+            <ColumnDefinition Width="*"/>
+            <!-- højre -->
+        </Grid.ColumnDefinitions>
+
+        <!-- VENSTRE: Titel + søg + tabel + knap -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"   />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Reoler" FontSize="22" FontWeight="Bold" Margin="8,0,0,12"/>
+
+            <!-- Søg -->
+            <StackPanel Grid.Row="1" Margin="0,0,0,8">
+                <TextBlock Text="Søg" FontWeight="SemiBold" Margin="4,0,0,2"/>
+                <TextBox x:Name="SearchBox" Height="28" />
+            </StackPanel>
+
+            <!-- Tabel -->
+            <DataGrid Grid.Row="2"
+                      x:Name="ShelvesGrid"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      HeadersVisibility="Column"
+                      SelectionMode="Single"
+                      Margin="0,0,0,8"
+                      SelectionChanged="ShelvesGrid_SelectionChanged">
+                <!-- Tilpas bindingsnavne til jeres model -->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id"          Binding="{Binding ShelvingUnitId}" Width="80"/>
+                    <DataGridTextColumn Header="Placering"   Binding="{Binding Location}"      Width="*"/>
+                    <DataGridTextColumn Header="Antal hylder" Binding="{Binding ShelfCount}"   Width="110"/>
+                    <DataGridTextColumn Header="Status"      Binding="{Binding StatusText}"    Width="120"/>
+                    <DataGridTextColumn Header="Lejer"       Binding="{Binding TenantName}"    Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button Grid.Row="3"
+                    Content="Opret ny Reol"
+                    Width="120" Height="32"
+                    HorizontalAlignment="Left"
+                    Click="NewShelf_Click"/>
+        </Grid>
+
+        <!-- HØJRE: Formular -->
+        <Border Grid.Column="2" BorderBrush="#DDD" BorderThickness="1" CornerRadius="6" Padding="16">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"   />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Detaljer" FontSize="18" FontWeight="Bold" Margin="0,0,0,12"/>
+
+                <!-- Reol-Id (typisk read-only) -->
+                <Grid Grid.Row="1" Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Reol-Id" VerticalAlignment="Center"/>
+                    <TextBox x:Name="ShelfIdBox" Grid.Column="1" Height="26" IsReadOnly="True"/>
+                </Grid>
+
+                <!-- Placering -->
+                <Grid Grid.Row="2" Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Placering" VerticalAlignment="Center"/>
+                    <TextBox x:Name="LocationBox" Grid.Column="1" Height="26"/>
+                </Grid>
+
+                <!-- Antal hylder -->
+                <Grid Grid.Row="3" Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Antal hylder" VerticalAlignment="Center"/>
+                    <TextBox x:Name="ShelfCountBox" Grid.Column="1" Height="26"/>
+                </Grid>
+
+                <!-- Bøjlestang -->
+                <Grid Grid.Row="4" Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Bøjlestang" VerticalAlignment="Center"/>
+                    <CheckBox x:Name="HangerBarCheck" Grid.Column="1" Content="Reolen har bøjlestang" />
+                </Grid>
+
+                <!-- Status -->
+                <Grid Grid.Row="5" Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Status" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <RadioButton x:Name="StatusFree"    Content="Ledig"   GroupName="status" Margin="0,0,12,0"/>
+                        <RadioButton x:Name="StatusOccupied" Content="Optaget" GroupName="status"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Lejer dropdown -->
+                <Grid Grid.Row="6" Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Lejer" VerticalAlignment="Top" Margin="0,15,0,0"/>
+                    <ComboBox x:Name="TenantCombo" Height="26"
+                              IsEditable="False" Margin="0,12,0,390" Grid.Column="1" />
+                </Grid>
+
+                <!-- Knapper -->
+                <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,8,0,0">
+                    <Button Content="Tilføj vare" Width="100" Height="32" Margin="0,0,12,0" Click="AddItem_Click"/>
+                    <Button Content="Gem"         Width="80"  Height="32" Margin="0,0,12,0" Click="SaveShelf_Click"/>
+                    <Button Content="Slet"        Width="80"  Height="32"                       Click="DeleteShelf_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

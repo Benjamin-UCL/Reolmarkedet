@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
@@ -28,12 +29,11 @@ public class RentalRepository : IRepository<Model.Rental>
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@StartDate", entity.StartDate);
             command.Parameters.AddWithValue("@EndDate", entity.EndDate);
-            command.Parameters.AddWithValue("@SettledDate",
-                entity.SettledDate.HasValue ? entity.SettledDate.Value : (object)DBNull.Value); //For at SettledDate kan være tom
+            command.Parameters.AddWithValue("@SettledDate", entity.SettledDate );            
             command.Parameters.AddWithValue("@RentalConfig", entity.RentalConfig);
             command.Parameters.AddWithValue("@PriceAgreement", entity.PriceAgreement);
-            command.Parameters.AddWithValue("@TenantId", entity.TenantId);
-            command.Parameters.AddWithValue("@ShelfUnitId", entity.ShelfUnitId);
+            command.Parameters.AddWithValue("@TenantId", entity.Tenant.TenantId);
+            command.Parameters.AddWithValue("@ShelfUnitId", entity.Unit.ShelvingUnitID);
 
             connection.Open();
             return command.ExecuteNonQuery();
@@ -80,23 +80,21 @@ public class RentalRepository : IRepository<Model.Rental>
             {
                 while (reader.Read())
                 {
-                    var rental = new Rental
-                    {
-                        RentalId = reader.GetInt32(0),               // RentalId
-                        StartDate = reader.GetDateTime(1),           // StartDate
-                        EndDate = reader.GetDateTime(2),             // EndDate
-                        SettledDate = reader.IsDBNull(3) ? null : reader.GetDateTime(3), // SettledDate kan være null
-                        RentalConfig = reader.GetString(4),          // RentalConfig
-                        PriceAgreement = reader.GetDecimal(5),       // PriceAgreement
-                        TenantId = reader.GetInt32(6),               // TenantId
-                        ShelfUnitId = reader.GetInt32(7)             // ShelfUnitId
-                    };
+                    var rental = new Rental(
+                        RentalId: reader.GetInt32(0), 
+                        StartDate: reader.GetDateTime(1),
+                        EndDate : reader.GetDateTime(2),             // EndDate
+                        SettledDate : reader.GetDateTime(3), // ? null : reader.GetDateTime(3), // SettledDate kan være null
+                        RentalConfig : reader.GetInt32(1),          // RentalConfig
+                        PriceAgreement : reader.GetDecimal(5),       // PriceAgreement
+                        TenantId : reader.GetInt32(6),               // TenantId
+                        ShelfUnitId : reader.GetInt32(7)             // ShelfUnitId
+                        );
+
                         rentals.Add(rental);
 
                 }
-           
-            }
-       
+            }    
         }
         return rentals;
 
