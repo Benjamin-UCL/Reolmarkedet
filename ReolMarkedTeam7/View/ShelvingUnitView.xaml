@@ -43,7 +43,7 @@
                       SelectionChanged="ShelvesGrid_SelectionChanged">
                 <!-- Tilpas bindingsnavne til jeres model -->
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id"          Binding="{Binding ShelvingUnitId}" Width="80"/>
+                    <DataGridTextColumn Header="Id"          Binding="{Binding Unit.ShelvingUnitId}" Width="80"/>
                     <DataGridTextColumn Header="Placering"   Binding="{Binding Location}"      Width="*"/>
                     <DataGridTextColumn Header="Antal hylder" Binding="{Binding ShelfCount}"   Width="110"/>
                     <DataGridTextColumn Header="Status"      Binding="{Binding StatusText}"    Width="120"/>
