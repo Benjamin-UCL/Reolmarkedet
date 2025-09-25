@@ -25,10 +25,12 @@ namespace ReolMarkedTeam7.ViewModel
         private string _newPhoneNo;        
         private string _newEmail;        
         private int _newAccountNo;
+        private string _searchTerm;
 
         public ICommand AddTenantCommand { get; }
         public ICommand SaveTenantCommand { get; }
         public ICommand DeleteTenantCommand { get; }
+        public ICommand SearchTenantCommand { get; }
 
         public Tenant_ViewModel(string connectionString)
         {
@@ -41,6 +43,7 @@ namespace ReolMarkedTeam7.ViewModel
             AddTenantCommand = new RelayCommand(AddTenant);
             SaveTenantCommand = new RelayCommand(SaveTenant, CanSaveTenant);
             DeleteTenantCommand = new RelayCommand(DeleteTenant, CanDeleteTenant);
+            SearchTenantCommand = new RelayCommand(SearchTenant, CanSearchTenant);
         }
 
         public ObservableCollection<Tenant> Tenants
@@ -69,6 +72,7 @@ namespace ReolMarkedTeam7.ViewModel
         public string newPhoneNo { get => _newPhoneNo; set { _newPhoneNo = value; OnPropertyChanged(); } }
         public string newEmail { get => _newEmail; set { _newEmail = value; OnPropertyChanged(); } }
         public int newAccountNo { get => _newAccountNo; set { _newAccountNo = value; OnPropertyChanged(); } }
+        public string searchTerm { get => _searchTerm; set { _searchTerm = value; OnPropertyChanged(); } }
 
 
         private void LoadTenants()
@@ -132,6 +136,24 @@ namespace ReolMarkedTeam7.ViewModel
         private bool CanDeleteTenant()
         {
             return SelectedTenant != null;
+        }
+
+        private void SearchTenant(object? parameter)
+        {
+            if (string.IsNullOrWhiteSpace(searchTerm))
+                return;
+
+            var tenant = Tenants.FirstOrDefault(t => t.Name.Equals(searchTerm, StringComparison.OrdinalIgnoreCase));
+
+            if (tenant != null)
+                SelectedTenant = tenant;
+            else
+                SelectedTenant = null;
+        }
+
+        private bool CanSearchTenant()
+        {
+            return !string.IsNullOrWhiteSpace(searchTerm);
         }
 
     }
