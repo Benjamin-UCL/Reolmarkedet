@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using GUI.Store;
 using GUI.Utility;
@@ -28,6 +29,11 @@ public class TenantViewModel : BaseViewModel
 
     public ObservableCollection<Tenant> Tenants { get; }
 
+    // Commands
+    public ICommand AddTenantCommand { get; }
+    public ICommand UpdateTenantCommand { get; }
+    public ICommand DeleteTenantCommand { get; }
+
     public TenantViewModel(NavigationStore navigationStore) : base(navigationStore)
     {
         //dummie data
@@ -43,9 +49,78 @@ public class TenantViewModel : BaseViewModel
             new Tenant("Charlie Brown", "55555555", "charlie@jdlk.com", 3)
         };
 
+        AddTenantCommand = new RelayCommand(AddTenant, CanAddTenant);
+        UpdateTenantCommand = new RelayCommand(UpdateTenant, CanUpdateTenant);
+        DeleteTenantCommand = new RelayCommand(DeleteTenant, CanDeleteTenant);
     }
 
-    // Commands
+    private void AddTenant(object? parameter)
+    {
+        MessageBox.Show("Add Tenant functionality is not implemented yet.");
+        // Example of adding a new tenant
+        //var newTenant = new Tenant(this.newName, this.newPhoneNo, this.newEmail, this.newAccountNo);
+        //Tenants.Add(newTenant);
+        //SelectedTenant = newTenant;
+    }
+
+    private bool CanAddTenant()
+    {
+        return true;
+        //return !string.IsNullOrWhiteSpace(newName) &&
+        //       !string.IsNullOrWhiteSpace(newPhoneNo) &&
+        //       !string.IsNullOrWhiteSpace(newEmail);
+
+    }
+    private void UpdateTenant(object? parameter)
+    {
+        MessageBox.Show("Update Tenant functionality is not implemented yet.");
+        //if (SelectedTenant == null)
+        //    return;
+
+        //// Update selected tenant's properties
+        //SelectedTenant.Name = newName;
+        //SelectedTenant.PhoneNo = newPhoneNo;
+        //SelectedTenant.Email = newEmail;
+        //SelectedTenant.AccountNo = newAccountNo;
+
+        //if (SelectedTenant.AccountNo == 0)
+        //{
+        //    // New tenant: add and set returned id
+        //    int newId = _tenantRepository.Add(SelectedTenant);
+        //    SelectedTenant.AccountNo = newId;
+        //}
+        //else
+        //{
+        //    // Existing tenant: update repository (implement Update in repository)
+        //    _tenantRepository.Update(SelectedTenant);
+        //}
+
+        //LoadTenants();
+    }
+
+    private bool CanUpdateTenant()
+    {
+        return true;
+        //return !string.IsNullOrWhiteSpace(newName) &&
+        //       !string.IsNullOrWhiteSpace(newPhoneNo) &&
+        //       !string.IsNullOrWhiteSpace(newEmail);
+    }
+
+    private void DeleteTenant(object? parameter)
+    {
+        MessageBox.Show("Delete Tenant functionality is not implemented yet.");
+        //if (SelectedTenant == null)
+        //    return;
+
+        //_tenantRepository.Delete(SelectedTenant.AccountNo);
+        //Tenants.Remove(SelectedTenant);
+    }
+
+    private bool CanDeleteTenant()
+    {
+        return true;
+        //return SelectedTenant != null;
+    }
 
 
 
@@ -56,9 +131,6 @@ public class TenantViewModel : BaseViewModel
     private Tenant _selectedTenant;
     private string _searchTerm;
 
-    public ICommand AddTenantCommand { get; }
-    public ICommand SaveTenantCommand { get; }
-    public ICommand DeleteTenantCommand { get; }
     public ICommand SearchTenantCommand { get; }
 
     public Tenant_ViewModel(string connectionString)
@@ -69,9 +141,6 @@ public class TenantViewModel : BaseViewModel
         Tenants = new ObservableCollection<Tenant>();
         LoadTenants();
 
-        AddTenantCommand = new RelayCommand(AddTenant);
-        SaveTenantCommand = new RelayCommand(SaveTenant, CanSaveTenant);
-        DeleteTenantCommand = new RelayCommand(DeleteTenant, CanDeleteTenant);
         SearchTenantCommand = new RelayCommand(SearchTenant, CanSearchTenant);
     }
 
@@ -103,60 +172,8 @@ public class TenantViewModel : BaseViewModel
             Tenants.Add(tenant);
     }
 
-    private void AddTenant(object? parameter)
-    {
-        // Example of adding a new tenant
-        var newTenant = new Tenant(this.newName, this.newPhoneNo, this.newEmail, this.newAccountNo);
-        Tenants.Add(newTenant);
-        SelectedTenant = newTenant;
-    }
 
-    private void SaveTenant(object? parameter)
-    {
-        if (SelectedTenant == null)
-            return;
 
-        // Update selected tenant's properties
-        SelectedTenant.Name = newName;
-        SelectedTenant.PhoneNo = newPhoneNo;
-        SelectedTenant.Email = newEmail;
-        SelectedTenant.AccountNo = newAccountNo;
-
-        if (SelectedTenant.AccountNo == 0)
-        {
-            // New tenant: add and set returned id
-            int newId = _tenantRepository.Add(SelectedTenant);
-            SelectedTenant.AccountNo = newId;
-        }
-        else
-        {
-            // Existing tenant: update repository (implement Update in repository)
-            _tenantRepository.Update(SelectedTenant);
-        }
-
-        LoadTenants();
-    }
-
-    private bool CanSaveTenant()
-    {
-        return !string.IsNullOrWhiteSpace(newName) &&
-               !string.IsNullOrWhiteSpace(newPhoneNo) &&
-               !string.IsNullOrWhiteSpace(newEmail);
-    }
-
-    private void DeleteTenant(object? parameter)
-    {
-        if (SelectedTenant == null)
-            return;
-
-        _tenantRepository.Delete(SelectedTenant.AccountNo);
-        Tenants.Remove(SelectedTenant);
-    }
-
-    private bool CanDeleteTenant()
-    {
-        return SelectedTenant != null;
-    }
 
     private void SearchTenant(object? parameter)
     {
