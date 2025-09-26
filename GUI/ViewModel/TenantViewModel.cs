@@ -30,12 +30,12 @@ public class TenantViewModel : BaseViewModel
 
     public TenantViewModel(NavigationStore navigationStore) : base(navigationStore)
     {
+        //dummie data
         this.newName = "Default Name";
         this.newPhoneNo = "00000000";
         this.newEmail = "jlkjæ@.com";
         this.newAccountNo = 0;
 
-        //dummie data
         Tenants = new ObservableCollection<Tenant>
         {
             new Tenant("Alice Johnson", "12345678", "alice@example.com", 1),
