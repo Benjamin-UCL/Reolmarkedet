@@ -7,44 +7,38 @@
              xmlns:vm="clr-namespace:GUI.ViewModel" 
              xmlns:UserControl="clr-namespace:GUI.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="550" d:DesignWidth="800"
              Background="White">
-        
-        <StackPanel>
-            <!--Menu-->
-            <UserControl:MenuComponent/>
-            
-        <!-- Hovedlayout: venstre liste / højre formular -->
-        <Grid Background="White" Margin="12">
+
+    <StackPanel Margin="0,0,0,0">
+        <!--Menu-->
+        <UserControl:MenuComponent/>
+        <Grid Background="White" Height="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="271*"/>
+                <RowDefinition Height="55*"/>
+                <RowDefinition Height="375*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="379*"/>
+                <!-- højre: formular -->
                 <!-- venstre: søg + tabel -->
                 <ColumnDefinition Width="8"/>
                 <!-- lodret "gutter" -->
                 <ColumnDefinition Width="353*"/>
-                <!-- højre: formular -->
             </Grid.ColumnDefinitions>
 
             <!-- VENSTRE SIDE -->
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
+            <StackPanel Grid.ColumnSpan="2" Margin="0,0,8,0" Grid.RowSpan="3">
                 <TextBlock Text="Lejere" FontSize="20" FontWeight="Bold" Margin="10,3,-59,5"/>
-
                 <!-- Søg -->
                 <StackPanel Grid.Row="1" Margin="0,0,0,8">
                     <TextBlock Text="Søg" FontWeight="SemiBold" Width="354"/>
                     <TextBox x:Name="SearchBox" Height="28"
                          ToolTip="Søg efter tlf.nr. eller email" Width="357"/>
                 </StackPanel>
-
-                <!-- Tabel -->
                 <DataGrid Grid.Row="2"
+                          Height="250"
                       x:Name="TenantsGrid"
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
@@ -53,7 +47,7 @@
                       Margin="10,3,25,74"
                       SelectionMode="Single" 
                       >
-                      <!--SelectionChanged="TenantsGrid_SelectionChanged"-->
+                    <!--SelectionChanged="TenantsGrid_SelectionChanged"-->
                     <!-- Ret bindingsnavne til jeres model (Name, PhoneNo, Email, AccountBalance) -->
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Navn"     Binding="{Binding Name}"           Width="*" />
@@ -62,29 +56,20 @@
                         <DataGridTextColumn Header="Balance"  Binding="{Binding AccountBalance}" Width="*" />
                     </DataGrid.Columns>
                 </DataGrid>
-
                 <Button Grid.Row="2" Content="Tilføj lejer" Width="100" Height="32"
                     
-                    HorizontalAlignment="Left" Margin="10,567,0,10" Grid.RowSpan="2"/>
-            </Grid>
+                    HorizontalAlignment="Left" Margin="10,0,0,10" Grid.RowSpan="2"/>
+            </StackPanel>
+
 
             <!-- HØJRE SIDE: Formular -->
-            <Border Grid.Column="2" BorderBrush="White" BorderThickness="1" CornerRadius="4" Padding="16">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
+            <Border Grid.Column="2" BorderBrush="White" BorderThickness="1" CornerRadius="4" Padding="16" Grid.RowSpan="3">
+                <StackPanel>
+                    
                     <TextBlock Text="Lejer" FontSize="20" FontWeight="Bold" Margin="0,0,0,12"/>
 
                     <!-- Navn -->
-                    <Grid Grid.Row="1" Margin="0,0,0,8">
+                    <Grid Margin="0,0,0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
@@ -94,7 +79,7 @@
                     </Grid>
 
                     <!-- Telefon -->
-                    <Grid Grid.Row="2" Margin="0,0,0,8">
+                    <Grid Margin="0,0,0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
@@ -104,7 +89,7 @@
                     </Grid>
 
                     <!-- Email -->
-                    <Grid Grid.Row="3" Margin="0,0,0,8">
+                    <Grid Margin="0,0,0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
@@ -114,7 +99,7 @@
                     </Grid>
 
                     <!-- Konto nr. -->
-                    <Grid Grid.Row="4" Margin="0,0,0,8">
+                    <Grid Margin="0,0,0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
@@ -124,7 +109,7 @@
                     </Grid>
 
                     <!-- Reoler + Tilføj -->
-                    <StackPanel Grid.Row="5" Margin="0,8,0,8">
+                    <StackPanel Margin="0,8,0,8">
                         <TextBlock Text="Reoler" FontWeight="SemiBold" Margin="0,0,0,6"/>
                         <!-- Simpel liste – byt til ItemsControl/WrapPanel når I binder rigtigt -->
                         <ListBox x:Name="ShelvesList" Height="90" BorderBrush="#CCC" BorderThickness="1"/>
@@ -134,13 +119,15 @@
                     </StackPanel>
 
                     <!-- Knapper -->
-                    <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,8,0,0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,8,0,0">
                         <Button Content="Gem"  Width="80" Height="32" Margin="0,0,8,0"/>
                         <Button Content="Slet" Width="80" Height="32"/>
                     </StackPanel>
-                </Grid>
+                </StackPanel>
             </Border>
         </Grid>
+
+        <!-- Hovedlayout: venstre liste / højre formular -->
     </StackPanel>
 </UserControl>
 
