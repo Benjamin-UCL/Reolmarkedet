@@ -9,10 +9,7 @@ namespace Model;
 public class Tenant
 {
     private int _tenantId;
-    public int TenantId 
-    { 
-        get { return _tenantId; }
-    }
+    public int TenantId { get => _tenantId; set { _tenantId = value; } }
 
     private string _name;
     public string Name { get => _name; set { _name = value; } }
@@ -30,9 +27,18 @@ public class Tenant
     public decimal AccountBalance { get => _accountBalance; set { _accountBalance = value; } }
 
     public Tenant() { } // Parameterless constructor
-    public Tenant(/*int tenantId,*/ string name, string phoneNo, string email, int accountNumber)
+    public Tenant(string name, string phoneNo, string email, int accountNumber)
+    {        
+        this._name = name;
+        this._phoneNo = phoneNo;
+        this._email = email;
+        this._accountNo = accountNumber;
+        this._accountBalance = 0.0M;
+    }
+
+    public Tenant(int tenantId, string name, string phoneNo, string email, int accountNumber)
     {
-        //this._tenantId = tenantId;
+        this._tenantId = tenantId;
         this._name = name;
         this._phoneNo = phoneNo;
         this._email = email;

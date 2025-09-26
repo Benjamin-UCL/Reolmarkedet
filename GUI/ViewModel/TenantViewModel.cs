@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Database_Connection.Repository;
 using GUI.Store;
 using GUI.Utility;
 using Model;
@@ -14,7 +15,9 @@ namespace GUI.ViewModel;
 
 public class TenantViewModel : BaseViewModel
 {
-    
+    private readonly TenantRepository _tenantRepository;
+    private readonly string _connectionString;
+
     private string _newName;
     public string newName { get => _newName; set { _newName = value; OnPropertyChanged(); } }
     
@@ -34,8 +37,11 @@ public class TenantViewModel : BaseViewModel
     public ICommand UpdateTenantCommand { get; }
     public ICommand DeleteTenantCommand { get; }
 
-    public TenantViewModel(NavigationStore navigationStore) : base(navigationStore)
+    public TenantViewModel(NavigationStore navigationStore, string connectionString) : base(navigationStore)
     {
+        _connectionString = connectionString;
+        _tenantRepository = new TenantRepository(connectionString);
+
         //dummie data
         this.newName = "Default Name";
         this.newPhoneNo = "00000000";
@@ -54,13 +60,15 @@ public class TenantViewModel : BaseViewModel
         DeleteTenantCommand = new RelayCommand(DeleteTenant, CanDeleteTenant);
     }
 
+
     private void AddTenant(object? parameter)
-    {
-        MessageBox.Show("Add Tenant functionality is not implemented yet.");
+    {        
         // Example of adding a new tenant
-        //var newTenant = new Tenant(this.newName, this.newPhoneNo, this.newEmail, this.newAccountNo);
-        //Tenants.Add(newTenant);
-        //SelectedTenant = newTenant;
+        Tenant newTenant = new Tenant(this.newName, this.newPhoneNo, this.newEmail, this.newAccountNo);
+        int newId = _tenantRepository.Add(newTenant);
+        newTenant.TenantId = newId;
+        Tenants.Add(newTenant);
+        ClearForm();
     }
 
     private bool CanAddTenant()
@@ -122,11 +130,17 @@ public class TenantViewModel : BaseViewModel
         //return SelectedTenant != null;
     }
 
+    public void ClearForm()
+    {
+        newName = string.Empty;
+        newPhoneNo = string.Empty;
+        newEmail = string.Empty;
+        newAccountNo = 0;
+    }
 
 
     /*
-    private readonly string _connectionString;
-    private readonly TenantRepository _tenantRepository;
+    
 
     private Tenant _selectedTenant;
     private string _searchTerm;
@@ -135,8 +149,7 @@ public class TenantViewModel : BaseViewModel
 
     public Tenant_ViewModel(string connectionString)
     {
-        _connectionString = connectionString;
-        _tenantRepository = new TenantRepository(connectionString);
+        
 
         Tenants = new ObservableCollection<Tenant>();
         LoadTenants();

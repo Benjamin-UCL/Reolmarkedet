@@ -225,7 +225,7 @@
                             Width="80" 
                             Height="32" 
                             Margin="8,0,0,0"
-                            Command="{Binding SaveTenantCommand}"/>      
+                            Command="{Binding UpdateTenantCommand}"/>      
 
                     </StackPanel>
                 </StackPanel>

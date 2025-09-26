@@ -19,7 +19,7 @@ namespace Database_Connection.Repository
         }
         public int Add(Tenant entity)
         {
-            string query = "INSERT INTO TENANT (Name, PhoneNo, Email, AccountNumber) OUTPUT INSERTED.TenantId VALUES (@Name, @PhoneNo, @Email, @AccountNumber)";
+            string query = "INSERT INTO TENANT (Name, PhoneNo, Email, AccountNo) OUTPUT INSERTED.TenantId VALUES (@Name, @PhoneNo, @Email, @AccountNumber)";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
