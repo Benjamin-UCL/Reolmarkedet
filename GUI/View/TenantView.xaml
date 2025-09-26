@@ -11,14 +11,19 @@
              Background="White">
 
     <StackPanel Margin="0,0,0,0">
+        
         <!--Menu-->
+        
         <UserControl:MenuComponent/>
+        
         <Grid Background="White" Height="Auto">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="271*"/>
                 <RowDefinition Height="55*"/>
                 <RowDefinition Height="375*"/>
             </Grid.RowDefinitions>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="379*"/>
                 <!-- højre: formular -->
@@ -33,34 +38,58 @@
                 <TextBlock Text="Lejere" FontSize="20" FontWeight="Bold" Margin="10,3,-59,5"/>
                 <!-- Søg -->
                 <StackPanel Grid.Row="1" Margin="0,0,0,8">
-                    <TextBlock Text="Søg" FontWeight="SemiBold" Width="354"/>
-                    <TextBox x:Name="SearchBox" Height="28"
-                         ToolTip="Søg efter tlf.nr. eller email" Width="357"/>
+                    <TextBlock 
+                        Text="Søg" 
+                        FontWeight="SemiBold" 
+                        Width="354"/>
+                    
+                    <TextBox 
+                        x:Name="SearchBox" 
+                        Height="28"
+                        ToolTip="Søg efter tlf.nr. eller email" 
+                        Width="357"/>
                 </StackPanel>
-                <DataGrid Grid.Row="2"
-                          Height="250"
-                      x:Name="TenantsGrid"
-                      AutoGenerateColumns="False"
-                      IsReadOnly="True"
-                      HeadersVisibility="Column"
-                      CanUserAddRows="False"
-                      Margin="10,3,25,74"
-                      SelectionMode="Single" 
-                      ItemsSource="{Binding Tenants}"
-                      >
+                
+                <DataGrid 
+                    Grid.Row="2"
+                    Height="250"
+                    x:Name="TenantsGrid"
+                    AutoGenerateColumns="False"
+                    IsReadOnly="True"
+                    HeadersVisibility="Column"
+                    CanUserAddRows="False"
+                    Margin="10,3,25,74"
+                    SelectionMode="Single" 
+                    ItemsSource="{Binding Tenants}">
 
                     <!--SelectionChanged="TenantsGrid_SelectionChanged"-->
                     <!-- Ret bindingsnavne til jeres model (Name, PhoneNo, Email, AccountBalance) -->
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Navn"     Binding="{Binding Name}"           Width="*" />
-                        <DataGridTextColumn Header="Telefon"  Binding="{Binding PhoneNo}"        Width="*" />
-                        <DataGridTextColumn Header="Email"    Binding="{Binding Email}"        Width="*" />
+                        <DataGridTextColumn 
+                            Header="Navn"     
+                            Binding="{Binding Name}"           
+                            Width="*" />
+                        <DataGridTextColumn 
+                            Header="Telefon"  
+                            Binding="{Binding PhoneNo}"        
+                            Width="*" />
+                        <DataGridTextColumn 
+                            Header="Email"    
+                            Binding="{Binding Email}"        
+                            Width="*" />
                         <!--<DataGridTextColumn Header="Balance"  Binding="{Binding AccountBalance}" Width="*" />-->
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Grid.Row="2" Content="Tilføj lejer" Width="100" Height="32"
-                    
-                    HorizontalAlignment="Left" Margin="10,0,0,10" Grid.RowSpan="2"/>
+                
+                <Button 
+                    Grid.Row="2" 
+                    Content="Tilføj lejer" 
+                    Width="100" 
+                    Height="32"
+                    HorizontalAlignment="Left" 
+                    Margin="10,0,0,10" 
+                    Grid.RowSpan="2"/>
+                
             </StackPanel>
 
 
@@ -76,54 +105,119 @@
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Navn" VerticalAlignment="Center"/>
-                        <TextBox x:Name="NameBox" Grid.Column="1" Height="28" Text="{Binding newName, UpdateSourceTrigger=PropertyChanged}"/>
+                        
+                        <TextBlock 
+                            Text="Navn" 
+                            VerticalAlignment="Center"/>
+                        
+                        <TextBox 
+                            x:Name="NameBox" 
+                            Grid.Column="1" 
+                            Height="28" 
+                            Text="{Binding newName, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <!-- Telefon -->
                     <Grid Margin="0,0,0,8">
+                        
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Telefon" VerticalAlignment="Center"/>
-                        <TextBox x:Name="PhoneBox" Grid.Column="1" Height="28" Text="{Binding newPhoneNo, UpdateSourceTrigger=PropertyChanged}"/>
+                        
+                        <TextBlock 
+                            Text="Telefon" 
+                            VerticalAlignment="Center"/>
+                        
+                        <TextBox 
+                            x:Name="PhoneBox" 
+                            Grid.Column="1" 
+                            Height="28" 
+                            Text="{Binding newPhoneNo, UpdateSourceTrigger=PropertyChanged}"/>
+                    
                     </Grid>
 
                     <!-- Email -->
                     <Grid Margin="0,0,0,8">
+                        
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Email" VerticalAlignment="Center"/>
-                        <TextBox x:Name="EmailBox" Grid.Column="1" Height="28" Text="{Binding newEmail, UpdateSourceTrigger=PropertyChanged}"/>
+                        
+                        <TextBlock 
+                            Text="Email" 
+                            VerticalAlignment="Center"/>
+                        
+                        <TextBox 
+                            x:Name="EmailBox" 
+                            Grid.Column="1" 
+                            Height="28" 
+                            Text="{Binding newEmail, UpdateSourceTrigger=PropertyChanged}"/>
+                    
                     </Grid>
 
                     <!-- Konto nr. -->
                     <Grid Margin="0,0,0,8">
+                        
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Konto nr." VerticalAlignment="Center"/>
-                        <TextBox x:Name="AccountNoBox" Grid.Column="1" Height="28" Text="{Binding newAccountNo, UpdateSourceTrigger=PropertyChanged}"/>
+                        
+                        <TextBlock 
+                            Text="Konto nr." 
+                            VerticalAlignment="Center"/>
+                        
+                        <TextBox 
+                            x:Name="AccountNoBox" 
+                            Grid.Column="1" 
+                            Height="28" 
+                            Text="{Binding newAccountNo, UpdateSourceTrigger=PropertyChanged}"/>
+                    
                     </Grid>
 
                     <!-- Reoler + Tilføj -->
                     <StackPanel Margin="0,8,0,8">
-                        <TextBlock Text="Reoler" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                        <TextBlock 
+                            Text="Reoler" 
+                            FontWeight="SemiBold" 
+                            Margin="0,0,0,6"/>
+                        
                         <!-- Simpel liste – byt til ItemsControl/WrapPanel når I binder rigtigt -->
-                        <ListBox x:Name="ShelvesList" Height="90" BorderBrush="#CCC" BorderThickness="1"/>
+                        
+                        <ListBox 
+                            x:Name="ShelvesList" 
+                            Height="90" 
+                            BorderBrush="#CCC" 
+                            BorderThickness="1"/>
 
-                        <Button Content="Tilføj Reol" Width="100" Height="28" Margin="0,8,0,0"
+                        <Button 
+                            Content="Tilføj Reol"
+                            Width="100" 
+                            Height="28" 
+                            Margin="0,8,0,0"
                             HorizontalAlignment="Left"/>
+                        
                     </StackPanel>
 
                     <!-- Knapper -->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,8,0,0">
-                        <Button Content="Gem"  Width="80" Height="32" Margin="0,0,8,0"/>
-                        <Button Content="Slet" Width="80" Height="32"/>
+                    <StackPanel 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Left" 
+                        Margin="0,8,0,0">
+                        
+                        <Button 
+                            Content="Gem"  
+                            Width="80" 
+                            Height="32" 
+                            Margin="0,0,8,0"/>
+                        
+                        <Button 
+                            Content="Slet" 
+                            Width="80" 
+                            Height="32"/>
+                        
                     </StackPanel>
                 </StackPanel>
             </Border>
