@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GUI.Store;
 using GUI.Utility;
+using Model;
 
 namespace GUI.ViewModel;
 
@@ -25,6 +26,8 @@ public class TenantViewModel : BaseViewModel
     private int _newAccountNo;
     public int newAccountNo { get => _newAccountNo; set { _newAccountNo = value; OnPropertyChanged(); } }
 
+    public ObservableCollection<Tenant> Tenants;
+
     public TenantViewModel(NavigationStore navigationStore) : base(navigationStore)
     {
         this.newName = "Default Name";
@@ -32,12 +35,19 @@ public class TenantViewModel : BaseViewModel
         this.newEmail = "jlkjæ@.com";
         this.newAccountNo = 0;
 
+        //dummie data
+        Tenants = new ObservableCollection<Tenant>
+        {
+            new Tenant("Alice Johnson", "12345678", "alice@example.com", 1),
+            new Tenant("Bob Smith", "87654321", "bob@jkd.com", 2),
+            new Tenant("Charlie Brown", "55555555", "charlie@jdlk.com", 3)
+        };
+
     }
     /*
     private readonly string _connectionString;
     private readonly TenantRepository _tenantRepository;
 
-    private ObservableCollection<Tenant> _tenants;
     private Tenant _selectedTenant;
     private string _searchTerm;
 
@@ -60,11 +70,6 @@ public class TenantViewModel : BaseViewModel
         SearchTenantCommand = new RelayCommand(SearchTenant, CanSearchTenant);
     }
 
-    public ObservableCollection<Tenant> Tenants
-    {
-        get => _tenants;
-        set { _tenants = value; OnPropertyChanged(); }
-    }
 
     public Tenant SelectedTenant
     {

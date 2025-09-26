@@ -46,14 +46,15 @@
                       CanUserAddRows="False"
                       Margin="10,3,25,74"
                       SelectionMode="Single" 
+                      ItemsSource="{Binding Tenants}"
                       >
                     <!--SelectionChanged="TenantsGrid_SelectionChanged"-->
                     <!-- Ret bindingsnavne til jeres model (Name, PhoneNo, Email, AccountBalance) -->
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Navn"     Binding="{Binding Name}"           Width="*" />
                         <DataGridTextColumn Header="Telefon"  Binding="{Binding PhoneNo}"        Width="*" />
-                        <DataGridTextColumn Header="Email"    Binding="{Binding Email}"          Width="*" />
-                        <DataGridTextColumn Header="Balance"  Binding="{Binding AccountBalance}" Width="*" />
+                        <DataGridTextColumn Header="Email"    Binding="{Binding Email}"        Width="*" />
+                        <!--<DataGridTextColumn Header="Balance"  Binding="{Binding AccountBalance}" Width="*" />-->
                     </DataGrid.Columns>
                 </DataGrid>
                 <Button Grid.Row="2" Content="Tilføj lejer" Width="100" Height="32"
