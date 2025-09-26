@@ -75,7 +75,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Navn" VerticalAlignment="Center"/>
-                        <TextBox x:Name="NameBox" Grid.Column="1" Height="28"/>
+                        <TextBox x:Name="NameBox" Grid.Column="1" Height="28" Text="{Binding newName, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <!-- Telefon -->
@@ -85,7 +85,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Telefon" VerticalAlignment="Center"/>
-                        <TextBox x:Name="PhoneBox" Grid.Column="1" Height="28"/>
+                        <TextBox x:Name="PhoneBox" Grid.Column="1" Height="28" Text="{Binding newPhoneNo, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <!-- Email -->
@@ -95,7 +95,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Email" VerticalAlignment="Center"/>
-                        <TextBox x:Name="EmailBox" Grid.Column="1" Height="28"/>
+                        <TextBox x:Name="EmailBox" Grid.Column="1" Height="28" Text="{Binding newEmail, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <!-- Konto nr. -->
@@ -105,7 +105,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Konto nr." VerticalAlignment="Center"/>
-                        <TextBox x:Name="AccountNoBox" Grid.Column="1" Height="28"/>
+                        <TextBox x:Name="AccountNoBox" Grid.Column="1" Height="28" Text="{Binding newAccountNo, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <!-- Reoler + Tilføj -->
