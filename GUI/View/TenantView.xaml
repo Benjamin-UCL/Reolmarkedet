@@ -7,9 +7,13 @@
              xmlns:vm="clr-namespace:GUI.ViewModel" 
              xmlns:UserControl="clr-namespace:GUI.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <UserControl:MenuComponent/>
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="White">
+        
+        <StackPanel>
+            <!--Menu-->
+            <UserControl:MenuComponent/>
+            
         <!-- Hovedlayout: venstre liste / højre formular -->
         <Grid Background="White" Margin="12">
             <Grid.ColumnDefinitions>
@@ -47,7 +51,9 @@
                       HeadersVisibility="Column"
                       CanUserAddRows="False"
                       Margin="10,3,25,74"
-                      SelectionMode="Single" SelectionChanged="TenantsGrid_SelectionChanged">
+                      SelectionMode="Single" 
+                      >
+                      <!--SelectionChanged="TenantsGrid_SelectionChanged"-->
                     <!-- Ret bindingsnavne til jeres model (Name, PhoneNo, Email, AccountBalance) -->
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Navn"     Binding="{Binding Name}"           Width="*" />
@@ -59,7 +65,7 @@
 
                 <Button Grid.Row="2" Content="Tilføj lejer" Width="100" Height="32"
                     
-                    HorizontalAlignment="Left" Click="AddTenant_Click" Margin="10,567,0,10" Grid.RowSpan="2"/>
+                    HorizontalAlignment="Left" Margin="10,567,0,10" Grid.RowSpan="2"/>
             </Grid>
 
             <!-- HØJRE SIDE: Formular -->
@@ -124,13 +130,13 @@
                         <ListBox x:Name="ShelvesList" Height="90" BorderBrush="#CCC" BorderThickness="1"/>
 
                         <Button Content="Tilføj Reol" Width="100" Height="28" Margin="0,8,0,0"
-                            HorizontalAlignment="Left" Click="AddShelf_Click"/>
+                            HorizontalAlignment="Left"/>
                     </StackPanel>
 
                     <!-- Knapper -->
                     <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,8,0,0">
-                        <Button Content="Gem"  Width="80" Height="32" Margin="0,0,8,0" Click="SaveTenant_Click"/>
-                        <Button Content="Slet" Width="80" Height="32" Click="DeleteTenant_Click"/>
+                        <Button Content="Gem"  Width="80" Height="32" Margin="0,0,8,0"/>
+                        <Button Content="Slet" Width="80" Height="32"/>
                     </StackPanel>
                 </Grid>
             </Border>
