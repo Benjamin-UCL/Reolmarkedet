@@ -44,6 +44,11 @@ public class TenantViewModel : BaseViewModel
         };
 
     }
+
+    // Commands
+
+
+
     /*
     private readonly string _connectionString;
     private readonly TenantRepository _tenantRepository;
