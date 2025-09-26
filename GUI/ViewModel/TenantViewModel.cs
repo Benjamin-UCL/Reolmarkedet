@@ -26,7 +26,7 @@ public class TenantViewModel : BaseViewModel
     private int _newAccountNo;
     public int newAccountNo { get => _newAccountNo; set { _newAccountNo = value; OnPropertyChanged(); } }
 
-    public ObservableCollection<Tenant> Tenants;
+    public ObservableCollection<Tenant> Tenants { get; }
 
     public TenantViewModel(NavigationStore navigationStore) : base(navigationStore)
     {

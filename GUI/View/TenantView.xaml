@@ -48,6 +48,7 @@
                       SelectionMode="Single" 
                       ItemsSource="{Binding Tenants}"
                       >
+
                     <!--SelectionChanged="TenantsGrid_SelectionChanged"-->
                     <!-- Ret bindingsnavne til jeres model (Name, PhoneNo, Email, AccountBalance) -->
                     <DataGrid.Columns>
