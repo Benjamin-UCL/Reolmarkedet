@@ -10,7 +10,131 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <UserControl:MenuComponent/>
-        <Button Content="Tenant view"></Button>
+        <!-- Hovedlayout: venstre liste / højre formular -->
+        <Grid Background="White" Margin="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="379*"/>
+                <!-- venstre: søg + tabel -->
+                <ColumnDefinition Width="8"/>
+                <!-- lodret "gutter" -->
+                <ColumnDefinition Width="353*"/>
+                <!-- højre: formular -->
+            </Grid.ColumnDefinitions>
+
+            <!-- VENSTRE SIDE -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Lejere" FontSize="20" FontWeight="Bold" Margin="10,3,-59,5"/>
+
+                <!-- Søg -->
+                <StackPanel Grid.Row="1" Margin="0,0,0,8">
+                    <TextBlock Text="Søg" FontWeight="SemiBold" Width="354"/>
+                    <TextBox x:Name="SearchBox" Height="28"
+                         ToolTip="Søg efter tlf.nr. eller email" Width="357"/>
+                </StackPanel>
+
+                <!-- Tabel -->
+                <DataGrid Grid.Row="2"
+                      x:Name="TenantsGrid"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      HeadersVisibility="Column"
+                      CanUserAddRows="False"
+                      Margin="10,3,25,74"
+                      SelectionMode="Single" SelectionChanged="TenantsGrid_SelectionChanged">
+                    <!-- Ret bindingsnavne til jeres model (Name, PhoneNo, Email, AccountBalance) -->
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Navn"     Binding="{Binding Name}"           Width="*" />
+                        <DataGridTextColumn Header="Telefon"  Binding="{Binding PhoneNo}"        Width="*" />
+                        <DataGridTextColumn Header="Email"    Binding="{Binding Email}"          Width="*" />
+                        <DataGridTextColumn Header="Balance"  Binding="{Binding AccountBalance}" Width="*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Button Grid.Row="2" Content="Tilføj lejer" Width="100" Height="32"
+                    
+                    HorizontalAlignment="Left" Click="AddTenant_Click" Margin="10,567,0,10" Grid.RowSpan="2"/>
+            </Grid>
+
+            <!-- HØJRE SIDE: Formular -->
+            <Border Grid.Column="2" BorderBrush="White" BorderThickness="1" CornerRadius="4" Padding="16">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Lejer" FontSize="20" FontWeight="Bold" Margin="0,0,0,12"/>
+
+                    <!-- Navn -->
+                    <Grid Grid.Row="1" Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Navn" VerticalAlignment="Center"/>
+                        <TextBox x:Name="NameBox" Grid.Column="1" Height="28"/>
+                    </Grid>
+
+                    <!-- Telefon -->
+                    <Grid Grid.Row="2" Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Telefon" VerticalAlignment="Center"/>
+                        <TextBox x:Name="PhoneBox" Grid.Column="1" Height="28"/>
+                    </Grid>
+
+                    <!-- Email -->
+                    <Grid Grid.Row="3" Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Email" VerticalAlignment="Center"/>
+                        <TextBox x:Name="EmailBox" Grid.Column="1" Height="28"/>
+                    </Grid>
+
+                    <!-- Konto nr. -->
+                    <Grid Grid.Row="4" Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Konto nr." VerticalAlignment="Center"/>
+                        <TextBox x:Name="AccountNoBox" Grid.Column="1" Height="28"/>
+                    </Grid>
+
+                    <!-- Reoler + Tilføj -->
+                    <StackPanel Grid.Row="5" Margin="0,8,0,8">
+                        <TextBlock Text="Reoler" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                        <!-- Simpel liste – byt til ItemsControl/WrapPanel når I binder rigtigt -->
+                        <ListBox x:Name="ShelvesList" Height="90" BorderBrush="#CCC" BorderThickness="1"/>
+
+                        <Button Content="Tilføj Reol" Width="100" Height="28" Margin="0,8,0,0"
+                            HorizontalAlignment="Left" Click="AddShelf_Click"/>
+                    </StackPanel>
+
+                    <!-- Knapper -->
+                    <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,8,0,0">
+                        <Button Content="Gem"  Width="80" Height="32" Margin="0,0,8,0" Click="SaveTenant_Click"/>
+                        <Button Content="Slet" Width="80" Height="32" Click="DeleteTenant_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
     </StackPanel>
 </UserControl>
 
