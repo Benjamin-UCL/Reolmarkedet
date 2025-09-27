@@ -9,8 +9,9 @@ namespace GUI.ViewModel;
 
 public class SaleViewModel : BaseViewModel
 {
-    public SaleViewModel(NavigationStore navigationStore) : base(navigationStore)
+    private readonly string _connectionString;
+    public SaleViewModel(NavigationStore navigationStore, string connectionString) : base(navigationStore)
     {
-
+        this._connectionString = connectionString;
     }
 }

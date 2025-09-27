@@ -52,7 +52,7 @@ public class BaseViewModel : INotifyPropertyChanged
     {
         if (obj is Type viewModelType && typeof(BaseViewModel).IsAssignableFrom(viewModelType))
         {
-            var viewModel = Activator.CreateInstance(viewModelType, _navigationStore) as BaseViewModel;
+            var viewModel = Activator.CreateInstance(viewModelType, _navigationStore, _navigationStore.ConnectionString) as BaseViewModel;
             _navigationStore.CurrentViewModel = viewModel;
         }
     }
