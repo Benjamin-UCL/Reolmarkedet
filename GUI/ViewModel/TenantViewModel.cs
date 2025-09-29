@@ -10,6 +10,8 @@ using Database_Connection.Repository;
 using GUI.Store;
 using GUI.Utility;
 using Model;
+using System.ComponentModel;
+using System.Windows.Data;
 
 namespace GUI.ViewModel;
 
@@ -34,6 +36,10 @@ public class TenantViewModel : BaseViewModel
     public Tenant SelectedTenant { get => _selectedTenant; set { _selectedTenant = value; OnPropertyChanged(); } }
 
     public ObservableCollection<Tenant> Tenants { get; }
+    public ICollectionView TenantsView { get; } 
+
+    private string _searchText;
+    public string SearchText { get => _searchText; set { _searchText = value; OnPropertyChanged(); TenantsView.Refresh(); } }
 
     // Commands
     public ICommand AddTenantCommand { get; }
@@ -58,6 +64,9 @@ public class TenantViewModel : BaseViewModel
             new Tenant("Charlie Brown", "55555555", "charlie@jdlk.com", 3)
         };
 
+        TenantsView = CollectionViewSource.GetDefaultView(Tenants);
+        TenantsView.Filter = FilterTenants;
+
         AddTenantCommand = new RelayCommand(AddTenant, CanAddTenant);
         UpdateTenantCommand = new RelayCommand(UpdateTenant, CanUpdateTenant);
         DeleteTenantCommand = new RelayCommand(DeleteTenant, CanDeleteTenant);
@@ -81,6 +90,20 @@ public class TenantViewModel : BaseViewModel
         //       !string.IsNullOrWhiteSpace(newPhoneNo) &&
         //       !string.IsNullOrWhiteSpace(newEmail);
 
+    }
+
+    private bool FilterTenants(object obj)
+    {
+        if (obj is Tenant tenant)
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+                return true;
+
+            return tenant.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase)  ||
+                   tenant.Email.Contains(SearchText, StringComparison.OrdinalIgnoreCase)  ||
+                   tenant.PhoneNo.Contains(SearchText, StringComparison.OrdinalIgnoreCase);
+        }
+        return false;
     }
     private void UpdateTenant(object? parameter)
     {
