@@ -60,7 +60,8 @@
                     CanUserAddRows="False"
                     Margin="10,3,25,74"
                     SelectionMode="Single" 
-                    ItemsSource="{Binding Tenants}">
+                    ItemsSource="{Binding Tenants}"
+                    SelectedItem="{Binding SelectedTenant, Mode=TwoWay}">
 
                     <!--SelectionChanged="TenantsGrid_SelectionChanged"-->
                     <!-- Ret bindingsnavne til jeres model (Name, PhoneNo, Email, AccountBalance) -->
@@ -114,7 +115,7 @@
                             x:Name="NameBox" 
                             Grid.Column="1" 
                             Height="28" 
-                            Text="{Binding newName, UpdateSourceTrigger=PropertyChanged}"/>
+                            Text="{Binding SelectedTenant.Name, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <!-- Telefon -->
@@ -133,7 +134,7 @@
                             x:Name="PhoneBox" 
                             Grid.Column="1" 
                             Height="28" 
-                            Text="{Binding newPhoneNo, UpdateSourceTrigger=PropertyChanged}"/>
+                            Text="{Binding SelectedTenant.PhoneNo, UpdateSourceTrigger=PropertyChanged}"/>
                     
                     </Grid>
 
@@ -153,7 +154,7 @@
                             x:Name="EmailBox" 
                             Grid.Column="1" 
                             Height="28" 
-                            Text="{Binding newEmail, UpdateSourceTrigger=PropertyChanged}"/>
+                            Text="{Binding SelectedTenant.Email, UpdateSourceTrigger=PropertyChanged}"/>
                     
                     </Grid>
 
@@ -173,7 +174,7 @@
                             x:Name="AccountNoBox" 
                             Grid.Column="1" 
                             Height="28" 
-                            Text="{Binding newAccountNo, UpdateSourceTrigger=PropertyChanged}"/>
+                            Text="{Binding SelectedTenant.AccountNo, UpdateSourceTrigger=PropertyChanged}"/>
                     
                     </Grid>
 
