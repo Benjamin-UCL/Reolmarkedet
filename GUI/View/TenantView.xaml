@@ -47,7 +47,8 @@
                         x:Name="SearchBox" 
                         Height="28"
                         ToolTip="Søg efter tlf.nr. eller email" 
-                        Width="357"/>
+                        Width="357"
+                        Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 
                 <DataGrid 
