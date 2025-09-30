@@ -227,7 +227,14 @@
                             Width="80" 
                             Height="32" 
                             Margin="8,0,0,0"
-                            Command="{Binding UpdateTenantCommand}"/>      
+                            Command="{Binding UpdateTenantCommand}"/>
+
+                        <Button 
+                            Content="Deselect" 
+                            Width="80" 
+                            Height="32"
+                            Margin="8,0,0,0"
+                            Command="{Binding DeselectTenantCommand}"/>
 
                     </StackPanel>
                 </StackPanel>

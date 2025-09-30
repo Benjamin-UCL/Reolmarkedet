@@ -57,6 +57,7 @@ public class TenantViewModel : BaseViewModel
     public ICommand AddTenantCommand { get; }
     public ICommand UpdateTenantCommand { get; }
     public ICommand DeleteTenantCommand { get; }
+    public ICommand DeselectTenantCommand { get; }
 
     public TenantViewModel(NavigationStore navigationStore, string connectionString) : base(navigationStore)
     {
@@ -73,6 +74,7 @@ public class TenantViewModel : BaseViewModel
         AddTenantCommand = new RelayCommand(AddTenant, CanAddTenant);
         UpdateTenantCommand = new RelayCommand(UpdateTenant, CanUpdateTenant);
         DeleteTenantCommand = new RelayCommand(DeleteTenant, CanDeleteTenant);
+        DeselectTenantCommand = new RelayCommand((obj) => SelectedTenant = null);
     }
 
 
