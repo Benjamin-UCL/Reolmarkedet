@@ -134,12 +134,11 @@ public class TenantViewModel : BaseViewModel
 
     private void DeleteTenant(object? parameter)
     {
-        MessageBox.Show("Delete Tenant functionality is not implemented yet.");
-        //if (SelectedTenant == null)
-        //    return;
+        if (SelectedTenant == null)
+            return;
 
-        //_tenantRepository.Delete(SelectedTenant.AccountNo);
-        //Tenants.Remove(SelectedTenant);
+        _tenantRepository.Delete(SelectedTenant.TenantId);
+        Tenants.Remove(SelectedTenant);
     }
 
     private bool CanDeleteTenant()
