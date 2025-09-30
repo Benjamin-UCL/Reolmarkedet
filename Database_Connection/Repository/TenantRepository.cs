@@ -108,12 +108,13 @@ namespace Database_Connection.Repository
         public void Update(Tenant entity)
         {
             string query = @"UPDATE TENANT 
-                         SET Name = @Name, PhoneNo = @PhoneNo, Email = @Email, AccountNumber = @AccountNumber 
+                         SET Name = @Name, PhoneNo = @PhoneNo, Email = @Email, AccountNo = @AccountNumber 
                          WHERE TenantId = @TenantId";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
-            {
+            {   
+                command.Parameters.AddWithValue("@TenantId", entity.TenantId);
                 command.Parameters.AddWithValue("@Name", entity.Name);
                 command.Parameters.AddWithValue("@PhoneNo", entity.PhoneNo);
                 command.Parameters.AddWithValue("@Email", entity.Email);

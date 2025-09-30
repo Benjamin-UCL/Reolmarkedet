@@ -113,29 +113,15 @@ public class TenantViewModel : BaseViewModel
     }
     private void UpdateTenant(object? parameter)
     {
-        MessageBox.Show("Update Tenant functionality is not implemented yet.");
-        //if (SelectedTenant == null)
-        //    return;
+        if (SelectedTenant == null)
+            return;
 
-        //// Update selected tenant's properties
-        //SelectedTenant.Name = newName;
-        //SelectedTenant.PhoneNo = newPhoneNo;
-        //SelectedTenant.Email = newEmail;
-        //SelectedTenant.AccountNo = newAccountNo;
+        SelectedTenant.Name = newName;
+        SelectedTenant.PhoneNo = newPhoneNo;
+        SelectedTenant.Email = newEmail;
+        SelectedTenant.AccountNo = newAccountNo;
 
-        //if (SelectedTenant.AccountNo == 0)
-        //{
-        //    // New tenant: add and set returned id
-        //    int newId = _tenantRepository.Add(SelectedTenant);
-        //    SelectedTenant.AccountNo = newId;
-        //}
-        //else
-        //{
-        //    // Existing tenant: update repository (implement Update in repository)
-        //    _tenantRepository.Update(SelectedTenant);
-        //}
-
-        //LoadTenants();
+        _tenantRepository.Update(SelectedTenant);
     }
 
     private bool CanUpdateTenant()
