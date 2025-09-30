@@ -13,7 +13,12 @@ public class ShelvingUnit
     { 
         get { return _shelvingUnitId; }
     }
-
+    public ShelvingUnit() { } // Parameterless constructor
+    
+    public ShelvingUnit(int shelvingUnitId)
+    {
+        _shelvingUnitId = shelvingUnitId;
+    }
 
     private void SalesPerformance() 
     {

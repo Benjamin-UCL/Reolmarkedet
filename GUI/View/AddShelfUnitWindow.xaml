@@ -1,0 +1,31 @@
+﻿<Window x:Class="GUI.View.AddShelfUnitWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tilføj Reol"
+        Width="360" SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize" Background="White"><Grid Margin="16">
+            
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="16"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="24"/>
+        <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <TextBlock Text="Reolnummer" FontWeight="Bold"/>
+    <ComboBox x:Name="comboUnits" Grid.Row="1" Height="28" MinWidth="220" ItemsSource="{Binding ShelvingUnits}" DisplayMemberPath="ShelvingUnitID"/>
+
+    <TextBlock Grid.Row="3" Text="Start dato" FontWeight="Bold"/>
+    <DatePicker x:Name="dateStart" Grid.Row="4" Height="28"/>
+
+    <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
+        <Button Content="Annullér" Margin="0,0,8,0" IsCancel="True"/>
+        <Button Content="Gem" Width="80" IsDefault="True" Command="{Binding AddRentalCommand}"/>
+    </StackPanel>
+</Grid>
+</Window>
+

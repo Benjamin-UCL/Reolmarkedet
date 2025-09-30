@@ -22,4 +22,13 @@ public partial class TenantView : UserControl
         InitializeComponent();
     }
 
+    private void OpenNewWindow_Click(object sender, RoutedEventArgs e)
+    {
+        //MessageBox.Show("This would open a new window to add a shelving unit.");
+        AddShelfUnitWindow addShelfUnitWindow = new AddShelfUnitWindow();
+        var vm = this.DataContext as ViewModel.TenantViewModel;
+        addShelfUnitWindow.DataContext = vm;
+        addShelfUnitWindow.Show();
+    }
+
 }

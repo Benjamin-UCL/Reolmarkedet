@@ -39,7 +39,28 @@ namespace Database_Connection.Repository
 
         public IEnumerable<ShelvingUnit> GetAll()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            var shelvingUnits = new List<ShelvingUnit>();
+            string query = "SELECT * FROM SHELF_UNIT";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        shelvingUnits.Add(new ShelvingUnit
+                        (
+                            (int)reader["ShelfUnitId"]
+                        ));
+
+                    }
+                }
+            }
+            return shelvingUnits;
         }
 
         public ShelvingUnit GetById(int id)

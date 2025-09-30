@@ -18,6 +18,8 @@ namespace GUI.ViewModel;
 public class TenantViewModel : BaseViewModel
 {
     private readonly TenantRepository _tenantRepository;
+    private readonly ShelvingUnitRepository _shelvingUnitRepository;
+
     private readonly string _connectionString;
 
     private string _newName;
@@ -48,6 +50,7 @@ public class TenantViewModel : BaseViewModel
     }
 
     public ObservableCollection<Tenant> Tenants { get; set; }
+    public ObservableCollection<ShelvingUnit> ShelvingUnits { get; set; }
     public ICollectionView TenantsView { get; } 
 
     private string _searchText;
@@ -58,13 +61,16 @@ public class TenantViewModel : BaseViewModel
     public ICommand UpdateTenantCommand { get; }
     public ICommand DeleteTenantCommand { get; }
     public ICommand DeselectTenantCommand { get; }
+    public ICommand AddRentalCommand { get; }
 
     public TenantViewModel(NavigationStore navigationStore, string connectionString) : base(navigationStore)
     {
         _connectionString = connectionString;
         _tenantRepository = new TenantRepository(connectionString);
+        _shelvingUnitRepository = new ShelvingUnitRepository(connectionString);
 
         Tenants =  new ObservableCollection<Tenant>(_tenantRepository.GetAll().ToList<Tenant>());
+        ShelvingUnits = new ObservableCollection<ShelvingUnit>(_shelvingUnitRepository.GetAll().ToList<ShelvingUnit>());
 
         TenantsView = CollectionViewSource.GetDefaultView(Tenants);
         TenantsView.Filter = FilterTenants;
@@ -73,6 +79,7 @@ public class TenantViewModel : BaseViewModel
         UpdateTenantCommand = new RelayCommand(UpdateTenant, CanUpdateTenant);
         DeleteTenantCommand = new RelayCommand(DeleteTenant, CanDeleteTenant);
         DeselectTenantCommand = new RelayCommand((obj) => SelectedTenant = null);
+        AddRentalCommand = new RelayCommand(AddRental, CanAddRental);
     }
 
 
@@ -158,6 +165,18 @@ public class TenantViewModel : BaseViewModel
         if (SelectedTenant == null)
             return false;
 
+        return true;
+    }
+
+    private void AddRental(object? parameter)
+    {
+        
+    }
+
+    private bool CanAddRental()
+    {
+        if (SelectedTenant == null)
+            return false;
         return true;
     }
 
