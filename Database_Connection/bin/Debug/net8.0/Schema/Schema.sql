@@ -20,10 +20,10 @@ CREATE TABLE SHELF_UNIT (
 
 CREATE TABLE TENANT (
     TenantId int IDENTITY(1,1) PRIMARY KEY,
-    Name nvarchar(50) NOT NULL,
-    PhoneNo nvarchar(15) NOT NULL,
-    Email nvarchar(100) NOT NULL,
-    AccountNo int NOT NULL,
+    Name nvarchar(50),
+    PhoneNo nvarchar(15),
+    Email nvarchar(100),
+    AccountNo int,
     AccountBalance decimal(10,2) NOT NULL DEFAULT 0
 );
 

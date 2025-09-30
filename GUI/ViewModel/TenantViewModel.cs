@@ -33,19 +33,19 @@ public class TenantViewModel : BaseViewModel
     public int newAccountNo { get => _newAccountNo; set { _newAccountNo = value; OnPropertyChanged(); } }
 
     private Tenant _selectedTenant;
-    public Tenant SelectedTenant 
-        { 
-            get => _selectedTenant; 
-            set 
-                {
-                _selectedTenant = value; 
-                this.newName = _selectedTenant != null ? _selectedTenant.Name : string.Empty;
-                this.newPhoneNo = _selectedTenant != null ? _selectedTenant.PhoneNo : string.Empty;
-                this.newEmail = _selectedTenant != null ? _selectedTenant.Email : string.Empty;
+    public Tenant SelectedTenant
+    {
+        get => _selectedTenant;
+        set
+        {
+            _selectedTenant = value;
+            this.newName = _selectedTenant != null ? _selectedTenant.Name : string.Empty;
+            this.newPhoneNo = _selectedTenant != null ? _selectedTenant.PhoneNo : string.Empty;
+            this.newEmail = _selectedTenant != null ? _selectedTenant.Email : string.Empty;
             this.newAccountNo = _selectedTenant != null ? _selectedTenant.AccountNo : 0;
-            OnPropertyChanged(); 
-                }
+            OnPropertyChanged();
         }
+    }
 
     public ObservableCollection<Tenant> Tenants { get; set; }
     public ICollectionView TenantsView { get; } 
@@ -88,10 +88,15 @@ public class TenantViewModel : BaseViewModel
 
     private bool CanAddTenant()
     {
+        if (SelectedTenant != null)
+            return false;
+
+        if (string.IsNullOrWhiteSpace(newName) &&
+            string.IsNullOrWhiteSpace(newPhoneNo) &&
+            string.IsNullOrWhiteSpace(newEmail) )
+            return false;
+
         return true;
-        //return !string.IsNullOrWhiteSpace(newName) &&
-        //       !string.IsNullOrWhiteSpace(newPhoneNo) &&
-        //       !string.IsNullOrWhiteSpace(newEmail);
 
     }
 
@@ -150,8 +155,10 @@ public class TenantViewModel : BaseViewModel
 
     private bool CanDeleteTenant()
     {
+        if (SelectedTenant == null)
+            return false;
+
         return true;
-        //return SelectedTenant != null;
     }
 
     public void ClearForm()

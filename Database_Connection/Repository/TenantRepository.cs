@@ -20,6 +20,10 @@ namespace Database_Connection.Repository
         public int Add(Tenant entity)
         {
             string query = "INSERT INTO TENANT (Name, PhoneNo, Email, AccountNo) OUTPUT INSERTED.TenantId VALUES (@Name, @PhoneNo, @Email, @AccountNumber)";
+            if (entity.Name == null) entity.Name = "";
+            if (entity.PhoneNo == null) entity.PhoneNo = "";
+            if (entity.Email == null) entity.Email = "";
+            if (entity.AccountNo == 0) entity.AccountNo = 0;
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
