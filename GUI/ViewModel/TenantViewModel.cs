@@ -63,12 +63,9 @@ public class TenantViewModel : BaseViewModel
         _connectionString = connectionString;
         _tenantRepository = new TenantRepository(connectionString);
 
-        Tenants = new ObservableCollection<Tenant>
-        {
-            new Tenant("Alice Johnson", "12345678", "alice@example.com", 1),
-            new Tenant("Bob Smith", "87654321", "bob@jkd.com", 2),
-            new Tenant("Charlie Brown", "55555555", "charlie@jdlk.com", 3)
-        };
+        Tenants =  new ObservableCollection<Tenant>(_tenantRepository.GetAll().ToList<Tenant>());
+        //Tenants = new ObservableCollection<Tenant>(_tenantRepository.GetAll()));
+        //Tenants = toList;
 
         TenantsView = CollectionViewSource.GetDefaultView(Tenants);
         TenantsView.Filter = FilterTenants;

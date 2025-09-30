@@ -65,10 +65,11 @@ namespace Database_Connection.Repository
                     {
                         tenants.Add(new Tenant
                         (
+                            (int)reader["TenantId"],
                             (string)reader["Name"],
                             (string)reader["PhoneNo"],
                             (string)reader["Email"],
-                            (int)reader["AccountNumber"]
+                            (int)reader["AccountNo"]
                         ));
 
                     }
