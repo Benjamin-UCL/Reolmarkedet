@@ -14,6 +14,7 @@ public class ShelvingUnit
         get { return _shelvingUnitId; }
     }
 
+
     private void SalesPerformance() 
     {
     }

@@ -32,5 +32,11 @@ public partial class MainWindow : Window
         tenantRepository.Add(new Tenant("Bob Smith", "87654321", "bob@jkd.com", 2));
         tenantRepository.Add(new Tenant("Charlie Brown", "55555555", "charlie@jdlk.com", 3));
 
+        ShelvingUnitRepository shelvingRepository = new ShelvingUnitRepository(ConnectionString);
+
+        for (int i = 0; i < 70; i++)
+        {
+            shelvingRepository.Add(new ShelvingUnit());
+        }
     }
 }
