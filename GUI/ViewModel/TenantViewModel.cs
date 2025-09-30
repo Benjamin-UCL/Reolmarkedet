@@ -33,7 +33,19 @@ public class TenantViewModel : BaseViewModel
     public int newAccountNo { get => _newAccountNo; set { _newAccountNo = value; OnPropertyChanged(); } }
 
     private Tenant _selectedTenant;
-    public Tenant SelectedTenant { get => _selectedTenant; set { _selectedTenant = value; OnPropertyChanged(); } }
+    public Tenant SelectedTenant 
+        { 
+            get => _selectedTenant; 
+            set 
+                {
+                _selectedTenant = value; 
+                this.newName = _selectedTenant != null ? _selectedTenant.Name : string.Empty;
+                this.newPhoneNo = _selectedTenant != null ? _selectedTenant.PhoneNo : string.Empty;
+                this.newEmail = _selectedTenant != null ? _selectedTenant.Email : string.Empty;
+            this.newAccountNo = _selectedTenant != null ? _selectedTenant.AccountNo : 0;
+            OnPropertyChanged(); 
+                }
+        }
 
     public ObservableCollection<Tenant> Tenants { get; }
     public ICollectionView TenantsView { get; } 
@@ -50,12 +62,6 @@ public class TenantViewModel : BaseViewModel
     {
         _connectionString = connectionString;
         _tenantRepository = new TenantRepository(connectionString);
-
-        //dummie data
-        this.newName = "Default Name";
-        this.newPhoneNo = "00000000";
-        this.newEmail = "jlkjæ@.com";
-        this.newAccountNo = 0;
 
         Tenants = new ObservableCollection<Tenant>
         {
