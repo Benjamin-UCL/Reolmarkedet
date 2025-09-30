@@ -47,7 +47,7 @@ public class TenantViewModel : BaseViewModel
                 }
         }
 
-    public ObservableCollection<Tenant> Tenants { get; }
+    public ObservableCollection<Tenant> Tenants { get; set; }
     public ICollectionView TenantsView { get; } 
 
     private string _searchText;
@@ -65,8 +65,6 @@ public class TenantViewModel : BaseViewModel
         _tenantRepository = new TenantRepository(connectionString);
 
         Tenants =  new ObservableCollection<Tenant>(_tenantRepository.GetAll().ToList<Tenant>());
-        //Tenants = new ObservableCollection<Tenant>(_tenantRepository.GetAll()));
-        //Tenants = toList;
 
         TenantsView = CollectionViewSource.GetDefaultView(Tenants);
         TenantsView.Filter = FilterTenants;
@@ -114,21 +112,31 @@ public class TenantViewModel : BaseViewModel
     {
         if (SelectedTenant == null)
             return;
-
         SelectedTenant.Name = newName;
         SelectedTenant.PhoneNo = newPhoneNo;
         SelectedTenant.Email = newEmail;
         SelectedTenant.AccountNo = newAccountNo;
 
         _tenantRepository.Update(SelectedTenant);
+
+        TenantsView.Refresh();
     }
 
     private bool CanUpdateTenant()
     {
+        if (SelectedTenant == null)
+            return false;
+
+        if (SelectedTenant.Name == newName &&
+            SelectedTenant.PhoneNo == newPhoneNo &&
+            SelectedTenant.Email == newEmail &&
+            SelectedTenant.AccountNo == newAccountNo)
+            return false;
+
+        if (newName == null && newPhoneNo == null && newEmail == null)
+            return false;
+
         return true;
-        //return !string.IsNullOrWhiteSpace(newName) &&
-        //       !string.IsNullOrWhiteSpace(newPhoneNo) &&
-        //       !string.IsNullOrWhiteSpace(newEmail);
     }
 
     private void DeleteTenant(object? parameter)
