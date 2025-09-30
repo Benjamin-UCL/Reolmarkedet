@@ -19,6 +19,7 @@ public class TenantViewModel : BaseViewModel
 {
     private readonly TenantRepository _tenantRepository;
     private readonly ShelvingUnitRepository _shelvingUnitRepository;
+    private readonly RentalRepository _rentalRepository;
 
     private readonly string _connectionString;
 
@@ -49,6 +50,20 @@ public class TenantViewModel : BaseViewModel
         }
     }
 
+    private ShelvingUnit _selectedShelf;
+    public ShelvingUnit SelectedShelf
+    {
+        get => _selectedShelf;
+        set
+        {
+            _selectedShelf = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private DateTime _startDate;
+    public DateTime StartDate { get => _startDate; set { _startDate = value; OnPropertyChanged(); } }
+
     public ObservableCollection<Tenant> Tenants { get; set; }
     public ObservableCollection<ShelvingUnit> ShelvingUnits { get; set; }
     public ICollectionView TenantsView { get; } 
@@ -68,9 +83,11 @@ public class TenantViewModel : BaseViewModel
         _connectionString = connectionString;
         _tenantRepository = new TenantRepository(connectionString);
         _shelvingUnitRepository = new ShelvingUnitRepository(connectionString);
+        _rentalRepository = new RentalRepository(connectionString);
 
         Tenants =  new ObservableCollection<Tenant>(_tenantRepository.GetAll().ToList<Tenant>());
         ShelvingUnits = new ObservableCollection<ShelvingUnit>(_shelvingUnitRepository.GetAll().ToList<ShelvingUnit>());
+        StartDate = DateTime.Now;
 
         TenantsView = CollectionViewSource.GetDefaultView(Tenants);
         TenantsView.Filter = FilterTenants;
@@ -170,7 +187,14 @@ public class TenantViewModel : BaseViewModel
 
     private void AddRental(object? parameter)
     {
-        
+        if (SelectedTenant == null || SelectedShelf == null)
+            return;
+
+        // Create a new rental object
+        Rental newRental = new Rental(SelectedTenant, SelectedShelf, StartDate);
+
+        // Add the rental to the repository
+        _rentalRepository.Add(newRental);
     }
 
     private bool CanAddRental()

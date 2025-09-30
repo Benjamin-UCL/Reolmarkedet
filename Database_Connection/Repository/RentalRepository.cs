@@ -33,7 +33,7 @@ public class RentalRepository : IRepository<Model.Rental>
             command.Parameters.AddWithValue("@RentalConfig", entity.RentalConfig);
             command.Parameters.AddWithValue("@PriceAgreement", entity.PriceAgreement);
             command.Parameters.AddWithValue("@TenantId", entity.Tenant.TenantId);
-            command.Parameters.AddWithValue("@ShelfUnitId", entity.Unit.ShelvingUnitID);
+            command.Parameters.AddWithValue("@ShelfUnitId", entity.ShelfUnit.ShelvingUnitID);
 
             connection.Open();
             return command.ExecuteNonQuery();
@@ -157,7 +157,7 @@ public class RentalRepository : IRepository<Model.Rental>
             command.Parameters.AddWithValue("@RentalConfig", entity.RentalConfig);
             command.Parameters.AddWithValue("@PriceAgreement", entity.PriceAgreement);
             command.Parameters.AddWithValue("@TenantId", entity.Tenant.TenantId);
-            command.Parameters.AddWithValue("@ShelfUnitId", entity.Unit.ShelvingUnitID);
+            command.Parameters.AddWithValue("@ShelfUnitId", entity.ShelfUnit.ShelvingUnitID);
             command.Parameters.AddWithValue("@RentalId", entity.RentalId);
 
             connection.Open();

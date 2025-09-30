@@ -5,6 +5,7 @@ using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Model;
 
 public class Rental
@@ -33,7 +34,7 @@ public class Rental
     public decimal PriceAgreement { get; set; }
 
     public Tenant Tenant { get; set; }
-    public ShelvingUnit Unit { get; set; }
+    public ShelvingUnit ShelfUnit { get; set; }
 
     public Rental(int RentalId, DateTime StartDate, DateTime EndDate, DateTime SettledDate, int RentalConfig, decimal PriceAgreement, int TenantId, int ShelfUnitId) 
     {
@@ -43,5 +44,12 @@ public class Rental
         this.SettledDate = SettledDate;
         this.RentalConfig = RentalConfig;
         this.PriceAgreement = PriceAgreement;
+    }
+
+    public Rental(Tenant tenant, ShelvingUnit shelfUnit, DateTime startDate)
+    {
+        this.Tenant = tenant;
+        this.ShelfUnit = shelfUnit;
+        this.StartDate = startDate;
     }
 }
