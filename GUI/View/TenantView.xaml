@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GUI.View"
+             xmlns:local1="clr-namespace:GUI.Utility"
              xmlns:vm="clr-namespace:GUI.ViewModel" 
              xmlns:UserControl="clr-namespace:GUI.Components"
              mc:Ignorable="d" 
@@ -141,13 +142,21 @@
                         <TextBlock 
                             Text="Email" 
                             VerticalAlignment="Center"/>
-                        
-                        <TextBox 
+
+                        <TextBox
                             x:Name="EmailBox" 
                             Grid.Column="1" 
-                            Height="28" 
-                            Text="{Binding newEmail, UpdateSourceTrigger=PropertyChanged}"/>
-                    
+                            Height="28" >
+                            <!--="{Binding newEmail, UpdateSourceTrigger=PropertyChanged}"/>-->
+                            <TextBox.Text>
+                                <Binding Path="newEmail" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <local1:EmailValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
                     </Grid>
 
                     <!-- Konto nr. -->
