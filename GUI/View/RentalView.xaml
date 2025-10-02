@@ -7,9 +7,150 @@
              xmlns:vm="clr-namespace:GUI.ViewModel"
              xmlns:UserControl="clr-namespace:GUI.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
     <StackPanel>
         <UserControl:MenuComponent/>
-        <Button Content="Rental view"></Button>
+        <Grid Margin="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <!-- venstre -->
+                <ColumnDefinition Width="16" />
+                <!-- gutter -->
+                <ColumnDefinition Width="Auto"/>
+                <!-- højre -->
+            </Grid.ColumnDefinitions>
+
+            <!-- VENSTRE: Titel + søg + tabel + knap -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"   />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Udlejninger" FontSize="22" FontWeight="Bold" Margin="8,0,0,12"/>
+
+                <!-- Søg -->
+                <StackPanel Grid.Row="1" Margin="0,0,0,8">
+                    <TextBlock Text="Søg" FontWeight="SemiBold" Margin="4,0,0,2"/>
+                    <TextBox x:Name="SearchBox" Height="28" />
+                </StackPanel>
+
+                <!-- Tabel -->
+                <DataGrid 
+                    Grid.Row="2" 
+                    Height="200"
+                    x:Name="ShelvesGrid"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    IsReadOnly="True"
+                    HeadersVisibility="Column"
+                    SelectionMode="Single"
+                    Margin="0,0,0,8"
+                    ItemsSource="{Binding Rentals}"
+                    SelectedItem="{Binding SelectedRental, Mode=TwoWay}">
+
+                    <!-- Tilpas bindingsnavne til jeres model -->
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id"          Binding="{Binding Unit.ShelvingUnitId}" Width="80"/>
+                        <DataGridTextColumn Header="Placering"   Binding="{Binding Location}"      Width="*"/>
+                        <DataGridTextColumn Header="Antal hylder" Binding="{Binding ShelfCount}"   Width="110"/>
+                        <DataGridTextColumn Header="Status"      Binding="{Binding StatusText}"    Width="120"/>
+                        <DataGridTextColumn Header="Lejer"       Binding="{Binding TenantName}"    Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Button Grid.Row="3"
+                  Content="Opret ny udlejning"
+                  Width="120" Height="32"
+                  HorizontalAlignment="Left"/>
+            </Grid>
+
+            <!-- HØJRE: Formular -->
+            <Border Grid.Column="2" BorderBrush="#DDD" BorderThickness="1" CornerRadius="6" Padding="16">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- 0: Titel -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 1: Startdato -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 2: Slutdato -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 3: Dato for opgørelse -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 4: Pris -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 5: Lejer -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 6: Knapper -->
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Detaljer" FontSize="18" FontWeight="Bold" Margin="0,0,0,12" Grid.Row="0"/>
+
+                    <!-- Startdato -->
+                    <Grid Grid.Row="1" Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Startdato" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,8,0"/>
+                        <DatePicker x:Name="StartDate" Grid.Column="1" Height="28" SelectedDate="{Binding StartDate}"/>
+                    </Grid>
+
+                    <!-- Slutdato -->
+                    <Grid Grid.Row="2" Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Slutdato" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,8,0"/>
+                        <DatePicker x:Name="EndDate" Grid.Column="1" Height="28" SelectedDate="{Binding EndDate}"/>
+                    </Grid>
+
+                    <!-- Dato for opgørelse -->
+                    <Grid Grid.Row="3" Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Dato for opgørelse" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,8,0"/>
+                        <DatePicker x:Name="SettleDate" Grid.Column="1" Height="28" SelectedDate="{Binding SettledDate}"/>
+                    </Grid>
+
+                    <!-- Pris -->
+                    <Grid Grid.Row="4" Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Pris" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,8,0"/>
+                        <TextBox x:Name="PriceAgreement" Grid.Column="1" Height="28" Text="{Binding NewPrice}"/>
+                    </Grid>
+
+                    <!--Lejer dropdown-->
+                    <Grid Grid.Row="5" Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Lejer" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,8,0"/>
+                        <ComboBox x:Name="TenantCombo" Grid.Column="1" Height="26" IsEditable="False" 
+                                  ItemsSource="{Binding Tenants}" 
+                                  SelectedItem="{Binding SelectedTenant, Mode=TwoWay}" 
+                                  DisplayMemberPath="Name" HorizontalAlignment="Left" Width="140"/>
+                    </Grid>
+
+                    <!--Knapper-->
+                    <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Left">
+
+                        <Button Content="Gem" Width="80" Height="32" Margin="0,0,12,0" Command="{Binding UpdateRentalCommand}"/>
+                        <Button Content="Slet" Width="80" Height="32" Command="{Binding DeleteRentalCommand}"/>
+                        <Button Content="Fravælg" Width="80" Height="32" Margin="8,0,0,0" Command="{Binding DeselectRentalCommand}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
     </StackPanel>
 </UserControl>
