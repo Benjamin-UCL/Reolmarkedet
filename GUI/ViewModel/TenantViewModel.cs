@@ -56,6 +56,7 @@ public class TenantViewModel : BaseViewModel
         get => _selectedShelf;
         set
         {
+            MessageBox.Show($"Selected Shelf ID: {value?.ShelvingUnitID}");
             _selectedShelf = value;
             OnPropertyChanged();
         }
@@ -186,10 +187,7 @@ public class TenantViewModel : BaseViewModel
     }
 
     private void AddRental(object? parameter)
-    {
-        if (SelectedTenant == null || SelectedShelf == null)
-            return;
-
+    {        
         // Create a new rental object
         Rental newRental = new Rental(SelectedTenant, SelectedShelf, StartDate);
 

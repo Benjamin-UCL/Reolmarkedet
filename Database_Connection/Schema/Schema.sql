@@ -30,10 +30,10 @@ CREATE TABLE TENANT (
 CREATE TABLE RENTAL (
     RentalId int IDENTITY(1,1) PRIMARY KEY,
     StartDate date NOT NULL,
-    EndDate date NOT NULL,
-    SettledDate date NULL,
+    EndDate date,
+    SettledDate date,
     RentalConfig int NOT NULL DEFAULT 0,
-    PriceAgreement decimal(10,2) NOT NULL,
+    PriceAgreement decimal(10,2),
     TenantId int NOT NULL,
     ShelfUnitId int NOT NULL,
     CONSTRAINT FK_Rental_Tenant FOREIGN KEY (TenantId) REFERENCES TENANT(TenantId),

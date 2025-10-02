@@ -20,7 +20,7 @@
     <ComboBox x:Name="comboUnits" Grid.Row="1" Height="28" MinWidth="220" 
               ItemsSource="{Binding ShelvingUnits}" 
               DisplayMemberPath="ShelvingUnitID"
-              SelectedItem="{Binding SelectedUnit, Mode=TwoWay}"/>
+              SelectedItem="{Binding SelectedShelf, Mode=TwoWay}"/>
 
     <TextBlock Grid.Row="3" Text="Start dato" FontWeight="Bold"/>
     <DatePicker x:Name="dateStart" Grid.Row="4" Height="28" SelectedDate="{Binding StartDate}"/>

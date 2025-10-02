@@ -17,10 +17,10 @@ public class Rental
     }
 
     public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
+    public DateTime? EndDate { get; set; }
 
-    private DateTime _settledDate;
-    public DateTime SettledDate 
+    private DateTime? _settledDate;
+    public DateTime? SettledDate 
     { 
         get { return _settledDate; } 
         set 
@@ -36,7 +36,7 @@ public class Rental
     public Tenant Tenant { get; set; }
     public ShelvingUnit ShelfUnit { get; set; }
 
-    public Rental(int RentalId, DateTime StartDate, DateTime EndDate, DateTime SettledDate, int RentalConfig, decimal PriceAgreement, int TenantId, int ShelfUnitId) 
+    public Rental(int RentalId, DateTime StartDate, DateTime EndDate, DateTime SettledDate, int RentalConfig, decimal PriceAgreement, Tenant TenantId,ShelvingUnit ShelfUnitId) 
     {
         this._rentalId = RentalId;
         this.StartDate = StartDate;
@@ -44,6 +44,8 @@ public class Rental
         this.SettledDate = SettledDate;
         this.RentalConfig = RentalConfig;
         this.PriceAgreement = PriceAgreement;
+        this.Tenant = TenantId;
+        this.ShelfUnit = ShelfUnitId;
     }
 
     public Rental(Tenant tenant, ShelvingUnit shelfUnit, DateTime startDate)
@@ -51,5 +53,9 @@ public class Rental
         this.Tenant = tenant;
         this.ShelfUnit = shelfUnit;
         this.StartDate = startDate;
+        this.EndDate = DateTime.Now;
+        this.SettledDate = DateTime.Now;
+        this.RentalConfig = 0;
+        this.PriceAgreement = 0;
     }
 }
