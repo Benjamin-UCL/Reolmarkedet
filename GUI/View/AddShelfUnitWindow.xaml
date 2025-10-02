@@ -26,7 +26,7 @@
     <DatePicker x:Name="dateStart" Grid.Row="4" Height="28" SelectedDate="{Binding StartDate}"/>
 
     <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
-        <Button Content="Annullér" Margin="0,0,8,0" Click="Cancel_Click"/>
+            <Button Content="Annullér" Margin="0,0,8,0" IsCancel="True"/>
         <Button Content="Gem" Width="80" IsDefault="True" Command="{Binding AddRentalCommand}"/>
     </StackPanel>
 </Grid>
