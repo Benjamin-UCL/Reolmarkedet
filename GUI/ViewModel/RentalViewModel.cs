@@ -39,6 +39,9 @@ public class RentalViewModel : BaseViewModel
         set { _selectedTenant = value; OnPropertyChanged(); }
     }
 
+    private ShelvingUnit _selectedShelfUnit;
+    public ShelvingUnit SelectedShelfUnit { get => _selectedShelfUnit; set { _selectedShelfUnit = value; OnPropertyChanged(); } }
+
     public ObservableCollection<Rental> Rentals { get; set; }
 
 
@@ -87,8 +90,8 @@ public class RentalViewModel : BaseViewModel
 
     public bool CanUpdate()
     {
-        if (SelectedRental != null)
-            return false;
+        //if (SelectedRental != null)
+        //    return false;
         return true;
     }
 
@@ -105,8 +108,8 @@ public class RentalViewModel : BaseViewModel
     }
     public bool CanDelete()
     {
-        if (SelectedRental != null)
-            return false;
+        //if (SelectedRental != null)
+        //    return false;
         return true;
     }
 
@@ -117,8 +120,8 @@ public class RentalViewModel : BaseViewModel
 
     public bool CanDeselect()
     {
-        if (SelectedRental != null)
-            return false;
+        //if (SelectedRental != null)
+        //    return false;
         return true;
     }
 }
