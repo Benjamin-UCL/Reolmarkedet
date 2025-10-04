@@ -47,7 +47,7 @@ public class TenantViewModel : BaseViewModel
             this.newEmail = _selectedTenant != null ? _selectedTenant.Email : string.Empty;
             this.newAccountNo = _selectedTenant != null ? _selectedTenant.AccountNo : 0;
             OnPropertyChanged();
-            //Hver gang S
+            //Hver gang SelectedTenant bliver valgt, henter næste metode tenant reoler
             LoadTenantShelves();
         }
     }
