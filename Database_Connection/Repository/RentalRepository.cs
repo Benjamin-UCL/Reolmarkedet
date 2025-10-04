@@ -142,7 +142,7 @@ public class RentalRepository : IRepository<Model.Rental>
                     );
 
                     ShelvingUnit shelf = new ShelvingUnit(
-                        reader.GetInt32(reader.GetOrdinal("ShelvingUnitId"))
+                        reader.GetInt32(reader.GetOrdinal("ShelfUnitId"))
                     );
 
                     Rental rental = new Rental(

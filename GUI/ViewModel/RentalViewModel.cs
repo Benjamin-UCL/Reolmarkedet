@@ -45,7 +45,8 @@ public class RentalViewModel : BaseViewModel
     public ICommand UpdateRentalCommand { get; }
     public ICommand DeleteRentalCommand { get; }
     public ICommand DeselectRentalCommand { get; }
-    
+
+
 
 
     public RentalViewModel(NavigationStore navigationStore, string connectionString) : base(navigationStore)
@@ -56,12 +57,13 @@ public class RentalViewModel : BaseViewModel
 
         Rentals = new ObservableCollection<Rental>(_rentalRepository.GetAllWithDetails());
 
+        TenantRepository tenantRepo = new TenantRepository(connectionString);
+        Tenants = new ObservableCollection<Tenant>(tenantRepo.GetAll());
+
         NewPrice = 50;
 
         UpdateRentalCommand = new RelayCommand(Update, CanUpdate);
-
         DeleteRentalCommand = new RelayCommand(Delete, CanDelete);
-
         DeselectRentalCommand = new RelayCommand(Deselect, CanDeselect);
     }
 
@@ -76,25 +78,47 @@ public class RentalViewModel : BaseViewModel
 
     public void Update(object? parameter)
     {
-        MessageBox.Show("Update method call");
+        if (SelectedRental == null)
+            return;
+
+        _rentalRepository.Update(SelectedRental);
+        MessageBox.Show("Udlejning opdateret!");
     }
 
     public bool CanUpdate()
-    { return true; }
+    {
+        if (SelectedRental != null)
+            return false;
+        return true;
+    }
 
 
     public void Delete(object? parameter)
     {
-        MessageBox.Show("Delete method call");
+        if (SelectedRental == null)
+            return;
+
+        _rentalRepository.Delete(SelectedRental.RentalId);
+        Rentals.Remove(SelectedRental);
+        SelectedRental = null;
+        MessageBox.Show("Udlejning slettet.");
     }
     public bool CanDelete()
-        { return true; }
+    {
+        if (SelectedRental != null)
+            return false;
+        return true;
+    }
 
     public void Deselect(object? parameter)
     {
-        MessageBox.Show("Deselect method call");
+        SelectedRental = null;
     }
 
     public bool CanDeselect()
-        { return true; }
+    {
+        if (SelectedRental != null)
+            return false;
+        return true;
+    }
 }
