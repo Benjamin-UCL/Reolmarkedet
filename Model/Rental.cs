@@ -36,7 +36,7 @@ public class Rental
     public Tenant Tenant { get; set; }
     public ShelvingUnit ShelfUnit { get; set; }
 
-    public Rental(int RentalId, DateTime StartDate, DateTime EndDate, DateTime SettledDate, int RentalConfig, decimal PriceAgreement, Tenant TenantId,ShelvingUnit ShelfUnitId) 
+    public Rental(int RentalId, DateTime StartDate, DateTime? EndDate, DateTime? SettledDate, int RentalConfig, decimal PriceAgreement, Tenant TenantId,ShelvingUnit ShelfUnitId) 
     {
         this._rentalId = RentalId;
         this.StartDate = StartDate;

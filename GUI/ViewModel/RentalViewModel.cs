@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Database_Connection.Repository;
 using GUI.Store;
 using GUI.Utility;
 using Model;
@@ -14,6 +15,7 @@ namespace GUI.ViewModel;
 
 public class RentalViewModel : BaseViewModel
 {
+    private readonly RentalRepository _rentalRepository;
     private readonly string _connectionString;
 
     //RentalCollection 
@@ -50,16 +52,11 @@ public class RentalViewModel : BaseViewModel
     {
         this._connectionString = connectionString;
 
+        _rentalRepository = new RentalRepository(connectionString);
+
+        Rentals = new ObservableCollection<Rental>(_rentalRepository.GetAllWithDetails());
+
         NewPrice = 50;
-
-        Tenant A = new Tenant("Hans", "12345678", "hej@google.com", 1);
-
-        ShelvingUnit B = new ShelvingUnit(5);
-
-        DateTime C = DateTime.Now;
-
-        Rentals = new ObservableCollection<Rental>();
-        Rentals.Add(new Rental(A, B, C));
 
         UpdateRentalCommand = new RelayCommand(Update, CanUpdate);
 

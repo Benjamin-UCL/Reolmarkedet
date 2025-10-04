@@ -94,11 +94,77 @@ public class RentalRepository : IRepository<Model.Rental>
                     //    rentals.Add(rental);
 
                 }
-            }    
+            }
         }
         return rentals;
 
     }
+
+    public IEnumerable<Rental> GetAllWithDetails()
+    {
+        string query = @"
+        SELECT 
+            r.RentalId,
+            r.StartDate,
+            r.EndDate,
+            r.SettledDate,
+            r.RentalConfig,
+            r.PriceAgreement,
+
+            t.TenantId,
+            t.Name AS TenantName,
+            t.PhoneNo,
+            t.Email,
+            t.AccountNo,
+
+            s.ShelfUnitId
+        FROM RENTAL r
+        INNER JOIN TENANT t ON r.TenantId = t.TenantId
+        INNER JOIN SHELF_UNIT s ON r.ShelfUnitId = s.ShelfUnitId";
+
+        var rentals = new List<Rental>();
+
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Tenant tenant = new Tenant(
+                        reader.GetInt32(reader.GetOrdinal("TenantId")),
+                        reader.GetString(reader.GetOrdinal("TenantName")),
+                        reader.GetString(reader.GetOrdinal("PhoneNo")),
+                        reader.GetString(reader.GetOrdinal("Email")),
+                        reader.GetInt32(reader.GetOrdinal("AccountNo"))
+                    );
+
+                    ShelvingUnit shelf = new ShelvingUnit(
+                        reader.GetInt32(reader.GetOrdinal("ShelvingUnitId"))
+                    );
+
+                    Rental rental = new Rental(
+                        reader.GetInt32(reader.GetOrdinal("RentalId")),
+                        reader.GetDateTime(reader.GetOrdinal("StartDate")),
+                        reader.IsDBNull(reader.GetOrdinal("EndDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("EndDate")),
+                        reader.IsDBNull(reader.GetOrdinal("SettledDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("SettledDate")),
+                        reader.GetInt32(reader.GetOrdinal("RentalConfig")),
+                        reader.GetDecimal(reader.GetOrdinal("PriceAgreement")),
+                        tenant,
+                        shelf
+                    );
+
+                    rentals.Add(rental);
+                }
+            }
+        }
+
+        return rentals;
+    }
+
+
 
     public Rental GetById(int id)
     {
