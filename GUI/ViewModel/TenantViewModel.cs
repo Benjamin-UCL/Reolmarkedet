@@ -47,6 +47,8 @@ public class TenantViewModel : BaseViewModel
             this.newEmail = _selectedTenant != null ? _selectedTenant.Email : string.Empty;
             this.newAccountNo = _selectedTenant != null ? _selectedTenant.AccountNo : 0;
             OnPropertyChanged();
+            //Hver gang SelectedTenant bliver valgt, henter næste metode tenant reoler
+            LoadTenantShelves();
         }
     }
 
@@ -56,7 +58,6 @@ public class TenantViewModel : BaseViewModel
         get => _selectedShelf;
         set
         {
-            MessageBox.Show($"Selected Shelf ID: {value?.ShelvingUnitID}");
             _selectedShelf = value;
             OnPropertyChanged();
         }
@@ -67,6 +68,8 @@ public class TenantViewModel : BaseViewModel
 
     public ObservableCollection<Tenant> Tenants { get; set; }
     public ObservableCollection<ShelvingUnit> ShelvingUnits { get; set; }
+    // Tenantshelves til Reolliste i TenantView. LoadingTenantShelves metode nedunder.
+    public ObservableCollection<ShelvingUnit> TenantShelves { get; set; }
     public ICollectionView TenantsView { get; } 
 
     private string _searchText;
@@ -85,6 +88,8 @@ public class TenantViewModel : BaseViewModel
         _tenantRepository = new TenantRepository(connectionString);
         _shelvingUnitRepository = new ShelvingUnitRepository(connectionString);
         _rentalRepository = new RentalRepository(connectionString);
+
+        TenantShelves = new ObservableCollection<ShelvingUnit>();
 
         Tenants =  new ObservableCollection<Tenant>(_tenantRepository.GetAll().ToList<Tenant>());
         ShelvingUnits = new ObservableCollection<ShelvingUnit>(_shelvingUnitRepository.GetAll().ToList<ShelvingUnit>());
@@ -193,6 +198,8 @@ public class TenantViewModel : BaseViewModel
 
         // Add the rental to the repository
         _rentalRepository.Add(newRental);
+
+        LoadTenantShelves();
     }
 
     private bool CanAddRental()
@@ -210,6 +217,22 @@ public class TenantViewModel : BaseViewModel
         newAccountNo = 0;
     }
 
+    private void LoadTenantShelves()
+    {        
+        if (TenantShelves == null)
+            TenantShelves = new ObservableCollection<ShelvingUnit>();
+
+        TenantShelves.Clear();
+
+        if (SelectedTenant == null)
+            return;
+            //hvis tenant ikke har reoler (= null), so kører vi koden efter ?? som lave en tom sekvens med 0 elementer men ikke er null.
+        var shelves = _rentalRepository.GetShelvesForTenant(SelectedTenant.TenantId)
+                     ?? Enumerable.Empty<ShelvingUnit>();
+
+        foreach (var s in shelves)
+            TenantShelves.Add(s);
+    }
 
     /*
     

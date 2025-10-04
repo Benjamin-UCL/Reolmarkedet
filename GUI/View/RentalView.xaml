@@ -53,11 +53,11 @@
 
                     <!-- Tilpas bindingsnavne til jeres model -->
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id"          Binding="{Binding Unit.ShelvingUnitId}" Width="80"/>
-                        <DataGridTextColumn Header="Placering"   Binding="{Binding Location}"      Width="*"/>
+                        <DataGridTextColumn Header="Id"          Binding="{Binding RentalId}" Width="80"/>
+                        <DataGridTextColumn Header="Reol"   Binding="{Binding ShelfUnit.ShelvingUnitID}"      Width="*"/>
                         <DataGridTextColumn Header="Antal hylder" Binding="{Binding ShelfCount}"   Width="110"/>
                         <DataGridTextColumn Header="Status"      Binding="{Binding StatusText}"    Width="120"/>
-                        <DataGridTextColumn Header="Lejer"       Binding="{Binding TenantName}"    Width="*"/>
+                        <DataGridTextColumn Header="Lejer"       Binding="{Binding Tenant.Name}"    Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
 
@@ -96,7 +96,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Startdato" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,8,0"/>
-                        <DatePicker x:Name="StartDate" Grid.Column="1" Height="28" SelectedDate="{Binding StartDate}"/>
+                        <DatePicker x:Name="StartDate" Grid.Column="1" Height="28" SelectedDate="{Binding SelectedRental.StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <!-- Slutdato -->
@@ -106,7 +106,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Slutdato" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,8,0"/>
-                        <DatePicker x:Name="EndDate" Grid.Column="1" Height="28" SelectedDate="{Binding EndDate}"/>
+                        <DatePicker x:Name="EndDate" Grid.Column="1" Height="28" SelectedDate="{Binding SelectedRental.EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <!-- Dato for opgørelse -->
@@ -116,7 +116,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Dato for opgørelse" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,8,0"/>
-                        <DatePicker x:Name="SettleDate" Grid.Column="1" Height="28" SelectedDate="{Binding SettledDate}"/>
+                        <DatePicker x:Name="SettleDate" Grid.Column="1" Height="28" SelectedDate="{Binding SelectedRental.SettledDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <!-- Pris -->
@@ -126,7 +126,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Pris" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,8,0"/>
-                        <TextBox x:Name="PriceAgreement" Grid.Column="1" Height="28" Text="{Binding NewPrice}"/>
+                        <TextBox x:Name="PriceAgreement" Grid.Column="1" Height="28" Text="{Binding SelectedRental.PriceAgreement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <!--Lejer dropdown-->
