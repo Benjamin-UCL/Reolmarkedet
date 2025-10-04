@@ -163,6 +163,36 @@ public class RentalRepository : IRepository<Model.Rental>
 
         return rentals;
     }
+    // metoden er afhængig af RENTAL tabellen til JOIN, derfor i RentalRepository
+    public IEnumerable<ShelvingUnit> GetShelvesForTenant(int tenantId)
+    {
+        string query = @"
+        SELECT s.ShelfUnitId
+        FROM RENTAL r
+        INNER JOIN SHELF_UNIT s ON r.ShelfUnitId = s.ShelfUnitId
+        WHERE r.TenantId = @TenantId";
+
+        var shelves = new List<ShelvingUnit>();
+
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@TenantId", tenantId);
+
+            connection.Open();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    shelves.Add(new ShelvingUnit(
+                        reader.GetInt32(reader.GetOrdinal("ShelfUnitId"))
+                    ));
+                }
+            }
+        }
+
+        return shelves;
+    }
 
 
 

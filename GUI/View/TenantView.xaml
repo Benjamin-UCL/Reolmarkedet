@@ -192,7 +192,9 @@
                             x:Name="ShelvesList" 
                             Height="90" 
                             BorderBrush="#CCC" 
-                            BorderThickness="1"/>
+                            BorderThickness="1"
+                            ItemsSource="{Binding TenantShelves}"
+                            DisplayMemberPath="ShelvingUnitID"/>
 
                         <Button 
                             Content="Tilføj Reol"
