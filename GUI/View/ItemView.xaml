@@ -86,7 +86,7 @@
                         <DataGridTextColumn Header="Id"     Binding="{Binding ItemId}" Width="30" />
                         <DataGridTextColumn Header="Titel"  Binding="{Binding Name}"  Width="180" />
                         <DataGridTextColumn Header="Pris"   Binding="{Binding Price}"  Width="50" />
-                        <DataGridTextColumn Header="Reol"   Binding="{Binding ShelfUnitNumber}" Width="50" />
+                        <DataGridTextColumn Header="Reol"   Binding="{Binding ShelvingUnitId}" Width="50" />
                     </DataGrid.Columns>
                 </DataGrid>
 
@@ -166,12 +166,11 @@
                             x:Name="ShelfCombo" 
                             Grid.Column="1" 
                             Height="28"
-                              IsEditable="False">
-                            <!-- Dummy data til design-time – fjern når I binder -->
-                            <ComboBoxItem Content="R26"/>
-                            <ComboBoxItem Content="R27"/>
-                            <ComboBoxItem Content="R28"/>
-                        </ComboBox>
+                            IsEditable="False"
+                            ItemsSource="{Binding ShelvingUnits}"
+                            DisplayMemberPath="ShelvingUnitID"
+                            SelectedValuePath="ShelvingUnitID"
+                            SelectedValue="{Binding newShelvingUnitID, Mode=TwoWay}" />
                     </Grid>
 
                     <!-- Knapper -->

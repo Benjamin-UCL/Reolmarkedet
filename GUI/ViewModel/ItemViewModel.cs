@@ -42,6 +42,15 @@ public class ItemViewModel : BaseViewModel
         }
     }
 
+    private readonly ShelvingUnitRepository _shelvingUnitRepository;
+    public ObservableCollection<ShelvingUnit> ShelvingUnits { get; } = new();
+    private int _newShelvingUnitId;
+    public int newShelvingUnitId
+    {
+        get => _newShelvingUnitId;
+        set { _newShelvingUnitId = value; OnPropertyChanged(); }
+    }
+
     //Commands 
     public ICommand UpdateItemCommand { get; }
     public ICommand DeleteItemCommand { get; }
@@ -49,6 +58,11 @@ public class ItemViewModel : BaseViewModel
     public ItemViewModel(NavigationStore navigationStore, string connectionString) : base(navigationStore)
     {
         this._connectionString = connectionString;
+
+        _shelvingUnitRepository = new ShelvingUnitRepository(connectionString);
+
+        foreach (var su in _shelvingUnitRepository.GetAll())
+            ShelvingUnits.Add(su);
 
         Items = new ObservableCollection<Item>();
         Items.Add(new Item("Tallerken", 20, "563483059285", 5));
