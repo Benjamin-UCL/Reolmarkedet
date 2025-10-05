@@ -4,22 +4,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using Microsoft.Data.SqlClient;
 
 namespace Database_Connection.Repository;
 
 public class ItemRepository : IRepository<Item>
 {
-    private readonly string _connectionstring;
-    public ItemRepository(string connectionstring)
+    private readonly string _connectionString;
+    public ItemRepository(string connectionString)
     {
-        _connectionstring = connectionstring ?? throw new ArgumentNullException(nameof(connectionstring));
+        _connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
     }
-    //Opretter en ny Item i databasen.
-    //Senere: kør en INSERT INTO Items(...) VALUES(...) og sæt ItemId fra DB.
     public int Add(Item entity)
     {
-        throw new NotImplementedException();
+        //DB kræver BarcodeNo, derfor autogenerer
+        if (string.IsNullOrWhiteSpace(entity.BarcodeNo))
+        {
+            var raw = Guid.NewGuid().ToString("N");
+            entity.BarcodeNo = raw.Substring(0, 12); //ChatGPTs hjælp til BarcodeNo
+        }
+        if (entity.Name == null) entity.Name = ""; 
+
+        string query = @"INSERT INTO ITEM (Name, Price, BarcodeNo, ShelfUnitId)
+                        OUTPUT INSERTED.ItemId
+                        VALUES (@Name, @Price, @BarcodeNo, @ShelfUnitId);";
+
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        using (SqlCommand command = new SqlCommand(query, connection))
+        {
+            command.Parameters.AddWithValue("@Name", entity.Name);
+            command.Parameters.AddWithValue("@Price", entity.Price);
+            command.Parameters.AddWithValue("@BarcodeNo", entity.BarcodeNo);
+            command.Parameters.AddWithValue("@ShelfUnitId", entity.ShelvingUnitId);
+
+            connection.Open();
+            int newId = (int)command.ExecuteScalar();
+            return newId;
+        }
     }
+
     //Sletter en Item ud fra dens primærnøgle (ItemId).
     //Senere: DELETE FROM Items WHERE ItemId=@id
     public void Delete(int id)
